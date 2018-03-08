@@ -3,7 +3,7 @@ A javascript parser for matroska files (up-to-date mk-parser)
 
 # Matroska EBML Parser #
 
-This is not a substitute for the amazing [MediaInfo](https://mediaarea.net/) program.  
+This is not a substitute for the amazing [MediaInfo](https://mediaarea.net/en/MediaInfo) program.  
 It just parses the headers of a matroska file and return a JSON with the info **I** deem important.
 
 # How-to #
