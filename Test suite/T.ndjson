@@ -1,0 +1,49 @@
+{"a": 12, "b": 0, "EOL": {"UNIX": "\n", "WINDOWS": "\r\n"}}
+{"c": ["yes"], "d": {"value": "no"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "no"}}
+{"a": 12, "b": 0}
+
+{"c": ["yes"], "d": {"value": "no"}, "n": "NEWLINE before"}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "no"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "no"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "no"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "no"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "no"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "no"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "no"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "no"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "no"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "no"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "no"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "no"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "yes"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "yes"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "yes"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "yes"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "yes"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "yes"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "yes"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "yes"}}
+{"a": 12, "b": 0}
+{"c": ["yes"], "d": {"value": "yes"}}

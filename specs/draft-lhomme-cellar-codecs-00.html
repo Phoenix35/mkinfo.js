@@ -1,0 +1,1957 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+
+  <title>Matroska Codec</title>
+
+  <style type="text/css" title="Xml2Rfc (sans serif)">
+  /*<![CDATA[*/
+	  a {
+	  text-decoration: none;
+	  }
+      /* info code from SantaKlauss at http://www.madaboutstyle.com/tooltip2.html */
+      a.info {
+          /* This is the key. */
+          position: relative;
+          z-index: 24;
+          text-decoration: none;
+      }
+      a.info:hover {
+          z-index: 25;
+          color: #FFF; background-color: #900;
+      }
+      a.info span { display: none; }
+      a.info:hover span.info {
+          /* The span will display just on :hover state. */
+          display: block;
+          position: absolute;
+          font-size: smaller;
+          top: 2em; left: -5em; width: 15em;
+          padding: 2px; border: 1px solid #333;
+          color: #900; background-color: #EEE;
+          text-align: left;
+      }
+	  a.smpl {
+	  color: black;
+	  }
+	  a:hover {
+	  text-decoration: underline;
+	  }
+	  a:active {
+	  text-decoration: underline;
+	  }
+	  address {
+	  margin-top: 1em;
+	  margin-left: 2em;
+	  font-style: normal;
+	  }
+	  body {
+	  color: black;
+	  font-family: verdana, helvetica, arial, sans-serif;
+	  font-size: 10pt;
+	  max-width: 55em;
+	  
+	  }
+	  cite {
+	  font-style: normal;
+	  }
+	  dd {
+	  margin-right: 2em;
+	  }
+	  dl {
+	  margin-left: 2em;
+	  }
+	
+	  ul.empty {
+	  list-style-type: none;
+	  }
+	  ul.empty li {
+	  margin-top: .5em;
+	  }
+	  dl p {
+	  margin-left: 0em;
+	  }
+	  dt {
+	  margin-top: .5em;
+	  }
+	  h1 {
+	  font-size: 14pt;
+	  line-height: 21pt;
+	  page-break-after: avoid;
+	  }
+	  h1.np {
+	  page-break-before: always;
+	  }
+	  h1 a {
+	  color: #333333;
+	  }
+	  h2 {
+	  font-size: 12pt;
+	  line-height: 15pt;
+	  page-break-after: avoid;
+	  }
+	  h3, h4, h5, h6 {
+	  font-size: 10pt;
+	  page-break-after: avoid;
+	  }
+	  h2 a, h3 a, h4 a, h5 a, h6 a {
+	  color: black;
+	  }
+	  img {
+	  margin-left: 3em;
+	  }
+	  li {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  ol {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  ol p {
+	  margin-left: 0em;
+	  }
+	  p {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  pre {
+	  margin-left: 3em;
+	  background-color: lightyellow;
+	  padding: .25em;
+	  }
+	  pre.text2 {
+	  border-style: dotted;
+	  border-width: 1px;
+	  background-color: #f0f0f0;
+	  width: 69em;
+	  }
+	  pre.inline {
+	  background-color: white;
+	  padding: 0em;
+	  }
+	  pre.text {
+	  border-style: dotted;
+	  border-width: 1px;
+	  background-color: #f8f8f8;
+	  width: 69em;
+	  }
+	  pre.drawing {
+	  border-style: solid;
+	  border-width: 1px;
+	  background-color: #f8f8f8;
+	  padding: 2em;
+	  }
+	  table {
+	  margin-left: 2em;
+	  }
+	  table.tt {
+	  vertical-align: top;
+	  }
+	  table.full {
+	  border-style: outset;
+	  border-width: 1px;
+	  }
+	  table.headers {
+	  border-style: outset;
+	  border-width: 1px;
+	  }
+	  table.tt td {
+	  vertical-align: top;
+	  }
+	  table.full td {
+	  border-style: inset;
+	  border-width: 1px;
+	  }
+	  table.tt th {
+	  vertical-align: top;
+	  }
+	  table.full th {
+	  border-style: inset;
+	  border-width: 1px;
+	  }
+	  table.headers th {
+	  border-style: none none inset none;
+	  border-width: 1px;
+	  }
+	  table.left {
+	  margin-right: auto;
+	  }
+	  table.right {
+	  margin-left: auto;
+	  }
+	  table.center {
+	  margin-left: auto;
+	  margin-right: auto;
+	  }
+	  caption {
+	  caption-side: bottom;
+	  font-weight: bold;
+	  font-size: 9pt;
+	  margin-top: .5em;
+	  }
+	
+	  table.header {
+	  border-spacing: 1px;
+	  width: 95%;
+	  font-size: 10pt;
+	  color: white;
+	  }
+	  td.top {
+	  vertical-align: top;
+	  }
+	  td.topnowrap {
+	  vertical-align: top;
+	  white-space: nowrap; 
+	  }
+	  table.header td {
+	  background-color: gray;
+	  width: 50%;
+	  }
+	  table.header a {
+	  color: white;
+	  }
+	  td.reference {
+	  vertical-align: top;
+	  white-space: nowrap;
+	  padding-right: 1em;
+	  }
+	  thead {
+	  display:table-header-group;
+	  }
+	  ul.toc, ul.toc ul {
+	  list-style: none;
+	  margin-left: 1.5em;
+	  margin-right: 0em;
+	  padding-left: 0em;
+	  }
+	  ul.toc li {
+	  line-height: 150%;
+	  font-weight: bold;
+	  font-size: 10pt;
+	  margin-left: 0em;
+	  margin-right: 0em;
+	  }
+	  ul.toc li li {
+	  line-height: normal;
+	  font-weight: normal;
+	  font-size: 9pt;
+	  margin-left: 0em;
+	  margin-right: 0em;
+	  }
+	  li.excluded {
+	  font-size: 0pt;
+	  }
+	  ul p {
+	  margin-left: 0em;
+	  }
+	
+	  .comment {
+	  background-color: yellow;
+	  }
+	  .center {
+	  text-align: center;
+	  }
+	  .error {
+	  color: red;
+	  font-style: italic;
+	  font-weight: bold;
+	  }
+	  .figure {
+	  font-weight: bold;
+	  text-align: center;
+	  font-size: 9pt;
+	  }
+	  .filename {
+	  color: #333333;
+	  font-weight: bold;
+	  font-size: 12pt;
+	  line-height: 21pt;
+	  text-align: center;
+	  }
+	  .fn {
+	  font-weight: bold;
+	  }
+	  .hidden {
+	  display: none;
+	  }
+	  .left {
+	  text-align: left;
+	  }
+	  .right {
+	  text-align: right;
+	  }
+	  .title {
+	  color: #990000;
+	  font-size: 18pt;
+	  line-height: 18pt;
+	  font-weight: bold;
+	  text-align: center;
+	  margin-top: 36pt;
+	  }
+	  .vcardline {
+	  display: block;
+	  }
+	  .warning {
+	  font-size: 14pt;
+	  background-color: yellow;
+	  }
+	
+	
+	  @media print {
+	  .noprint {
+		display: none;
+	  }
+	
+	  a {
+		color: black;
+		text-decoration: none;
+	  }
+	
+	  table.header {
+		width: 90%;
+	  }
+	
+	  td.header {
+		width: 50%;
+		color: black;
+		background-color: white;
+		vertical-align: top;
+		font-size: 12pt;
+	  }
+	
+	  ul.toc a::after {
+		content: leader('.') target-counter(attr(href), page);
+	  }
+	
+	  ul.ind li li a {
+		content: target-counter(attr(href), page);
+	  }
+	
+	  .print2col {
+		column-count: 2;
+		-moz-column-count: 2;
+		column-fill: auto;
+	  }
+	  }
+	
+	  @page {
+	  @top-left {
+		   content: "Internet-Draft"; 
+	  } 
+	  @top-right {
+		   content: "December 2010"; 
+	  } 
+	  @top-center {
+		   content: "Abbreviated Title";
+	  } 
+	  @bottom-left {
+		   content: "Doe"; 
+	  } 
+	  @bottom-center {
+		   content: "Expires June 2011"; 
+	  } 
+	  @bottom-right {
+		   content: "[Page " counter(page) "]"; 
+	  } 
+	  }
+	
+	  @page:first { 
+		@top-left {
+		  content: normal;
+		}
+		@top-right {
+		  content: normal;
+		}
+		@top-center {
+		  content: normal;
+		}
+	  }
+  /*]]>*/
+  </style>
+
+  <link href="#rfc.toc" rel="Contents">
+<link href="#rfc.section.1" rel="Chapter" title="1 Introduction">
+<link href="#rfc.section.2" rel="Chapter" title="2 Status of this document">
+<link href="#rfc.section.3" rel="Chapter" title="3 Security Considerations">
+<link href="#rfc.section.4" rel="Chapter" title="4 IANA Considerations">
+<link href="#rfc.section.5" rel="Chapter" title="5 Notations and Conventions">
+<link href="#rfc.section.6" rel="Chapter" title="6 Codec Mappings">
+<link href="#rfc.section.6.1" rel="Chapter" title="6.1 Defining Matroska Codec Support">
+<link href="#rfc.section.6.1.1" rel="Chapter" title="6.1.1 Codec ID">
+<link href="#rfc.section.6.1.2" rel="Chapter" title="6.1.2 Codec Name">
+<link href="#rfc.section.6.1.3" rel="Chapter" title="6.1.3 Description">
+<link href="#rfc.section.6.1.4" rel="Chapter" title="6.1.4 Initialisation">
+<link href="#rfc.section.6.1.5" rel="Chapter" title="6.1.5 Citation">
+<link href="#rfc.section.6.1.6" rel="Chapter" title="6.1.6 Deprecation Date">
+<link href="#rfc.section.6.1.7" rel="Chapter" title="6.1.7 Superseded By">
+<link href="#rfc.section.6.2" rel="Chapter" title="6.2 Recommendations for the Creation of New Codec Mappings">
+<link href="#rfc.section.6.3" rel="Chapter" title="6.3 Video Codec Mappings">
+<link href="#rfc.section.6.3.1" rel="Chapter" title="6.3.1 V_MS/VFW/FOURCC">
+<link href="#rfc.section.6.3.2" rel="Chapter" title="6.3.2 V_UNCOMPRESSED">
+<link href="#rfc.section.6.3.3" rel="Chapter" title="6.3.3 V_MPEG4/ISO/SP">
+<link href="#rfc.section.6.3.4" rel="Chapter" title="6.3.4 V_MPEG4/ISO/ASP">
+<link href="#rfc.section.6.3.5" rel="Chapter" title="6.3.5 V_MPEG4/ISO/AP">
+<link href="#rfc.section.6.3.6" rel="Chapter" title="6.3.6 V_MPEG4/MS/V3">
+<link href="#rfc.section.6.3.7" rel="Chapter" title="6.3.7 V_MPEG1">
+<link href="#rfc.section.6.3.8" rel="Chapter" title="6.3.8 V_MPEG2">
+<link href="#rfc.section.6.3.9" rel="Chapter" title="6.3.9 V_REAL/RV10">
+<link href="#rfc.section.6.3.10" rel="Chapter" title="6.3.10 V_REAL/RV20">
+<link href="#rfc.section.6.3.11" rel="Chapter" title="6.3.11 V_REAL/RV30">
+<link href="#rfc.section.6.3.12" rel="Chapter" title="6.3.12 V_REAL/RV40">
+<link href="#rfc.section.6.3.13" rel="Chapter" title="6.3.13 V_QUICKTIME">
+<link href="#rfc.section.6.3.14" rel="Chapter" title="6.3.14 V_THEORA">
+<link href="#rfc.section.6.3.15" rel="Chapter" title="6.3.15 V_PRORES">
+<link href="#rfc.section.6.3.16" rel="Chapter" title="6.3.16 V_VP8">
+<link href="#rfc.section.6.3.17" rel="Chapter" title="6.3.17 V_VP9">
+<link href="#rfc.section.6.3.18" rel="Chapter" title="6.3.18 V_FFV1">
+<link href="#rfc.section.6.4" rel="Chapter" title="6.4 Audio Codec Mappings">
+<link href="#rfc.section.6.4.1" rel="Chapter" title="6.4.1 A_MPEG/L3">
+<link href="#rfc.section.6.4.2" rel="Chapter" title="6.4.2 A_MPEG/L2">
+<link href="#rfc.section.6.4.3" rel="Chapter" title="6.4.3 A_MPEG/L1">
+<link href="#rfc.section.6.4.4" rel="Chapter" title="6.4.4 A_PCM/INT/BIG">
+<link href="#rfc.section.6.4.5" rel="Chapter" title="6.4.5 A_PCM/INT/LIT">
+<link href="#rfc.section.6.4.6" rel="Chapter" title="6.4.6 A_PCM/FLOAT/IEEE">
+<link href="#rfc.section.6.4.7" rel="Chapter" title="6.4.7 A_MPC">
+<link href="#rfc.section.6.4.8" rel="Chapter" title="6.4.8 A_AC3">
+<link href="#rfc.section.6.4.9" rel="Chapter" title="6.4.9 A_AC3/BSID9">
+<link href="#rfc.section.6.4.10" rel="Chapter" title="6.4.10 A_AC3/BSID10">
+<link href="#rfc.section.6.4.11" rel="Chapter" title="6.4.11 A_ALAC">
+<link href="#rfc.section.6.4.12" rel="Chapter" title="6.4.12 A_DTS">
+<link href="#rfc.section.6.4.13" rel="Chapter" title="6.4.13 A_DTS/EXPRESS">
+<link href="#rfc.section.6.4.14" rel="Chapter" title="6.4.14 A_DTS/LOSSLESS">
+<link href="#rfc.section.6.4.15" rel="Chapter" title="6.4.15 A_VORBIS">
+<link href="#rfc.section.6.4.16" rel="Chapter" title="6.4.16 A_FLAC">
+<link href="#rfc.section.6.4.17" rel="Chapter" title="6.4.17 A_REAL/14_4">
+<link href="#rfc.section.6.4.18" rel="Chapter" title="6.4.18 A_REAL/28_8">
+<link href="#rfc.section.6.4.19" rel="Chapter" title="6.4.19 A_REAL/COOK">
+<link href="#rfc.section.6.4.20" rel="Chapter" title="6.4.20 A_REAL/SIPR">
+<link href="#rfc.section.6.4.21" rel="Chapter" title="6.4.21 A_REAL/RALF">
+<link href="#rfc.section.6.4.22" rel="Chapter" title="6.4.22 A_REAL/ATRC">
+<link href="#rfc.section.6.4.23" rel="Chapter" title="6.4.23 A_MS/ACM">
+<link href="#rfc.section.6.4.24" rel="Chapter" title="6.4.24 A_AAC/MPEG2/MAIN">
+<link href="#rfc.section.6.4.25" rel="Chapter" title="6.4.25 A_AAC/MPEG2/LC">
+<link href="#rfc.section.6.4.26" rel="Chapter" title="6.4.26 A_AAC/MPEG2/LC/SBR">
+<link href="#rfc.section.6.4.27" rel="Chapter" title="6.4.27 A_AAC/MPEG2/SSR">
+<link href="#rfc.section.6.4.28" rel="Chapter" title="6.4.28 A_AAC/MPEG4/MAIN">
+<link href="#rfc.section.6.4.29" rel="Chapter" title="6.4.29 A_AAC/MPEG4/LC">
+<link href="#rfc.section.6.4.30" rel="Chapter" title="6.4.30 A_AAC/MPEG4/LC/SBR">
+<link href="#rfc.section.6.4.31" rel="Chapter" title="6.4.31 A_AAC/MPEG4/SSR">
+<link href="#rfc.section.6.4.32" rel="Chapter" title="6.4.32 A_AAC/MPEG4/LTP">
+<link href="#rfc.section.6.4.33" rel="Chapter" title="6.4.33 A_QUICKTIME">
+<link href="#rfc.section.6.4.34" rel="Chapter" title="6.4.34 A_QUICKTIME/QDMC">
+<link href="#rfc.section.6.4.35" rel="Chapter" title="6.4.35 A_QUICKTIME/QDM2">
+<link href="#rfc.section.6.4.36" rel="Chapter" title="6.4.36 A_TTA1">
+<link href="#rfc.section.6.4.37" rel="Chapter" title="6.4.37 A_WAVPACK4">
+<link href="#rfc.section.6.5" rel="Chapter" title="6.5 Subtitle Codec Mappings">
+<link href="#rfc.section.6.5.1" rel="Chapter" title="6.5.1 S_TEXT/UTF8">
+<link href="#rfc.section.6.5.2" rel="Chapter" title="6.5.2 S_TEXT/SSA">
+<link href="#rfc.section.6.5.3" rel="Chapter" title="6.5.3 S_TEXT/ASS">
+<link href="#rfc.section.6.5.4" rel="Chapter" title="6.5.4 S_TEXT/USF">
+<link href="#rfc.section.6.5.5" rel="Chapter" title="6.5.5 S_TEXT/WEBVTT">
+<link href="#rfc.section.6.5.6" rel="Chapter" title="6.5.6 S_IMAGE/BMP">
+<link href="#rfc.section.6.5.7" rel="Chapter" title="6.5.7 S_DVBSUB">
+<link href="#rfc.section.6.5.8" rel="Chapter" title="6.5.8 S_VOBSUB">
+<link href="#rfc.section.6.5.9" rel="Chapter" title="6.5.9 S_HDMV/PGS">
+<link href="#rfc.section.6.5.10" rel="Chapter" title="6.5.10 S_HDMV/TEXTST">
+<link href="#rfc.section.6.5.11" rel="Chapter" title="6.5.11 S_KATE">
+<link href="#rfc.section.6.6" rel="Chapter" title="6.6 Button Codec Mappings">
+<link href="#rfc.section.6.6.1" rel="Chapter" title="6.6.1 B_VOBBTN">
+<link href="#rfc.section.7" rel="Chapter" title="7 Subtitles">
+<link href="#rfc.section.7.1" rel="Chapter" title="7.1 Images Subtitles">
+<link href="#rfc.section.7.2" rel="Chapter" title="7.2 SRT Subtitles">
+<link href="#rfc.section.7.3" rel="Chapter" title="7.3 SSA/ASS Subtitles">
+<link href="#rfc.section.7.4" rel="Chapter" title="7.4 USF Subtitles">
+<link href="#rfc.section.7.5" rel="Chapter" title="7.5 WebVTT">
+<link href="#rfc.section.7.5.1" rel="Chapter" title="7.5.1 Storage of WebVTT in Matroska">
+<link href="#rfc.section.7.5.2" rel="Chapter" title="7.5.2 Examples of transformation">
+<link href="#rfc.section.7.5.3" rel="Chapter" title="7.5.3 Storage of WebVTT in Matroska vs. WebM">
+<link href="#rfc.section.7.6" rel="Chapter" title="7.6 HDMV presentation graphics subtitles">
+<link href="#rfc.section.7.6.1" rel="Chapter" title="7.6.1 Storage of HDMV presentation graphics subtitles">
+<link href="#rfc.section.7.7" rel="Chapter" title="7.7 HDMV text subtitles">
+<link href="#rfc.section.7.7.1" rel="Chapter" title="7.7.1 Storage of HDMV text subtitles">
+<link href="#rfc.section.7.8" rel="Chapter" title="7.8 Digital Video Broadcasting (DVB) subtitles">
+<link href="#rfc.section.7.8.1" rel="Chapter" title="7.8.1 Storage of DVB subtitles">
+<link href="#rfc.references" rel="Chapter" title="8 Normative References">
+<link href="#rfc.authors" rel="Chapter">
+
+
+  <meta name="generator" content="xml2rfc version 2.8.2 - https://tools.ietf.org/tools/xml2rfc" />
+  <link rel="schema.dct" href="http://purl.org/dc/terms/" />
+
+  <meta name="dct.creator" content="Lhomme, S., Bunkus, M., and D. Rice" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-lhomme-cellar-codec-00" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-1-3" />
+  <meta name="dct.abstract" content="This document defines the Matroska codec mappings, including the codec ID, layout of data in a " />
+  <meta name="description" content="This document defines the Matroska codec mappings, including the codec ID, layout of data in a " />
+
+</head>
+
+<body>
+
+  <table class="header">
+    <tbody>
+    
+    	<tr>
+<td class="left">cellar</td>
+<td class="right">S. Lhomme</td>
+</tr>
+<tr>
+<td class="left">Internet-Draft</td>
+<td class="right"></td>
+</tr>
+<tr>
+<td class="left">Intended status: Standards Track</td>
+<td class="right">M. Bunkus</td>
+</tr>
+<tr>
+<td class="left">Expires: July 7, 2018</td>
+<td class="right"></td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">D. Rice</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">January 3, 2018</td>
+</tr>
+
+    	
+    </tbody>
+  </table>
+
+  <p class="title">Matroska Codec<br />
+  <span class="filename">draft-lhomme-cellar-codec-00</span></p>
+  
+  <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
+<p>This document defines the Matroska codec mappings, including the codec ID, layout of data in a <samp>Block Element</samp> and in an optional <samp>CodecPrivate Element</samp>.  </p>
+<h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
+<p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
+<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
+<p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
+<p>This Internet-Draft will expire on July 7, 2018.</p>
+<h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
+<p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
+
+  
+  <hr class="noprint" />
+  <h1 class="np" id="rfc.toc"><a href="#rfc.toc">Table of Contents</a></h1>
+  <ul class="toc">
+
+  	<li>1.   <a href="#rfc.section.1">Introduction</a>
+</li>
+<li>2.   <a href="#rfc.section.2">Status of this document</a>
+</li>
+<li>3.   <a href="#rfc.section.3">Security Considerations</a>
+</li>
+<li>4.   <a href="#rfc.section.4">IANA Considerations</a>
+</li>
+<li>5.   <a href="#rfc.section.5">Notations and Conventions</a>
+</li>
+<li>6.   <a href="#rfc.section.6">Codec Mappings</a>
+</li>
+<ul><li>6.1.   <a href="#rfc.section.6.1">Defining Matroska Codec Support</a>
+</li>
+<ul><li>6.1.1.   <a href="#rfc.section.6.1.1">Codec ID</a>
+</li>
+<li>6.1.2.   <a href="#rfc.section.6.1.2">Codec Name</a>
+</li>
+<li>6.1.3.   <a href="#rfc.section.6.1.3">Description</a>
+</li>
+<li>6.1.4.   <a href="#rfc.section.6.1.4">Initialisation</a>
+</li>
+<li>6.1.5.   <a href="#rfc.section.6.1.5">Citation</a>
+</li>
+<li>6.1.6.   <a href="#rfc.section.6.1.6">Deprecation Date</a>
+</li>
+<li>6.1.7.   <a href="#rfc.section.6.1.7">Superseded By</a>
+</li>
+</ul><li>6.2.   <a href="#rfc.section.6.2">Recommendations for the Creation of New Codec Mappings</a>
+</li>
+<li>6.3.   <a href="#rfc.section.6.3">Video Codec Mappings</a>
+</li>
+<ul><li>6.3.1.   <a href="#rfc.section.6.3.1">V_MS/VFW/FOURCC</a>
+</li>
+<li>6.3.2.   <a href="#rfc.section.6.3.2">V_UNCOMPRESSED</a>
+</li>
+<li>6.3.3.   <a href="#rfc.section.6.3.3">V_MPEG4/ISO/SP</a>
+</li>
+<li>6.3.4.   <a href="#rfc.section.6.3.4">V_MPEG4/ISO/ASP</a>
+</li>
+<li>6.3.5.   <a href="#rfc.section.6.3.5">V_MPEG4/ISO/AP</a>
+</li>
+<li>6.3.6.   <a href="#rfc.section.6.3.6">V_MPEG4/MS/V3</a>
+</li>
+<li>6.3.7.   <a href="#rfc.section.6.3.7">V_MPEG1</a>
+</li>
+<li>6.3.8.   <a href="#rfc.section.6.3.8">V_MPEG2</a>
+</li>
+<li>6.3.9.   <a href="#rfc.section.6.3.9">V_REAL/RV10</a>
+</li>
+<li>6.3.10.   <a href="#rfc.section.6.3.10">V_REAL/RV20</a>
+</li>
+<li>6.3.11.   <a href="#rfc.section.6.3.11">V_REAL/RV30</a>
+</li>
+<li>6.3.12.   <a href="#rfc.section.6.3.12">V_REAL/RV40</a>
+</li>
+<li>6.3.13.   <a href="#rfc.section.6.3.13">V_QUICKTIME</a>
+</li>
+<li>6.3.14.   <a href="#rfc.section.6.3.14">V_THEORA</a>
+</li>
+<li>6.3.15.   <a href="#rfc.section.6.3.15">V_PRORES</a>
+</li>
+<li>6.3.16.   <a href="#rfc.section.6.3.16">V_VP8</a>
+</li>
+<li>6.3.17.   <a href="#rfc.section.6.3.17">V_VP9</a>
+</li>
+<li>6.3.18.   <a href="#rfc.section.6.3.18">V_FFV1</a>
+</li>
+</ul><li>6.4.   <a href="#rfc.section.6.4">Audio Codec Mappings</a>
+</li>
+<ul><li>6.4.1.   <a href="#rfc.section.6.4.1">A_MPEG/L3</a>
+</li>
+<li>6.4.2.   <a href="#rfc.section.6.4.2">A_MPEG/L2</a>
+</li>
+<li>6.4.3.   <a href="#rfc.section.6.4.3">A_MPEG/L1</a>
+</li>
+<li>6.4.4.   <a href="#rfc.section.6.4.4">A_PCM/INT/BIG</a>
+</li>
+<li>6.4.5.   <a href="#rfc.section.6.4.5">A_PCM/INT/LIT</a>
+</li>
+<li>6.4.6.   <a href="#rfc.section.6.4.6">A_PCM/FLOAT/IEEE</a>
+</li>
+<li>6.4.7.   <a href="#rfc.section.6.4.7">A_MPC</a>
+</li>
+<li>6.4.8.   <a href="#rfc.section.6.4.8">A_AC3</a>
+</li>
+<li>6.4.9.   <a href="#rfc.section.6.4.9">A_AC3/BSID9</a>
+</li>
+<li>6.4.10.   <a href="#rfc.section.6.4.10">A_AC3/BSID10</a>
+</li>
+<li>6.4.11.   <a href="#rfc.section.6.4.11">A_ALAC</a>
+</li>
+<li>6.4.12.   <a href="#rfc.section.6.4.12">A_DTS</a>
+</li>
+<li>6.4.13.   <a href="#rfc.section.6.4.13">A_DTS/EXPRESS</a>
+</li>
+<li>6.4.14.   <a href="#rfc.section.6.4.14">A_DTS/LOSSLESS</a>
+</li>
+<li>6.4.15.   <a href="#rfc.section.6.4.15">A_VORBIS</a>
+</li>
+<li>6.4.16.   <a href="#rfc.section.6.4.16">A_FLAC</a>
+</li>
+<li>6.4.17.   <a href="#rfc.section.6.4.17">A_REAL/14_4</a>
+</li>
+<li>6.4.18.   <a href="#rfc.section.6.4.18">A_REAL/28_8</a>
+</li>
+<li>6.4.19.   <a href="#rfc.section.6.4.19">A_REAL/COOK</a>
+</li>
+<li>6.4.20.   <a href="#rfc.section.6.4.20">A_REAL/SIPR</a>
+</li>
+<li>6.4.21.   <a href="#rfc.section.6.4.21">A_REAL/RALF</a>
+</li>
+<li>6.4.22.   <a href="#rfc.section.6.4.22">A_REAL/ATRC</a>
+</li>
+<li>6.4.23.   <a href="#rfc.section.6.4.23">A_MS/ACM</a>
+</li>
+<li>6.4.24.   <a href="#rfc.section.6.4.24">A_AAC/MPEG2/MAIN</a>
+</li>
+<li>6.4.25.   <a href="#rfc.section.6.4.25">A_AAC/MPEG2/LC</a>
+</li>
+<li>6.4.26.   <a href="#rfc.section.6.4.26">A_AAC/MPEG2/LC/SBR</a>
+</li>
+<li>6.4.27.   <a href="#rfc.section.6.4.27">A_AAC/MPEG2/SSR</a>
+</li>
+<li>6.4.28.   <a href="#rfc.section.6.4.28">A_AAC/MPEG4/MAIN</a>
+</li>
+<li>6.4.29.   <a href="#rfc.section.6.4.29">A_AAC/MPEG4/LC</a>
+</li>
+<li>6.4.30.   <a href="#rfc.section.6.4.30">A_AAC/MPEG4/LC/SBR</a>
+</li>
+<li>6.4.31.   <a href="#rfc.section.6.4.31">A_AAC/MPEG4/SSR</a>
+</li>
+<li>6.4.32.   <a href="#rfc.section.6.4.32">A_AAC/MPEG4/LTP</a>
+</li>
+<li>6.4.33.   <a href="#rfc.section.6.4.33">A_QUICKTIME</a>
+</li>
+<li>6.4.34.   <a href="#rfc.section.6.4.34">A_QUICKTIME/QDMC</a>
+</li>
+<li>6.4.35.   <a href="#rfc.section.6.4.35">A_QUICKTIME/QDM2</a>
+</li>
+<li>6.4.36.   <a href="#rfc.section.6.4.36">A_TTA1</a>
+</li>
+<li>6.4.37.   <a href="#rfc.section.6.4.37">A_WAVPACK4</a>
+</li>
+</ul><li>6.5.   <a href="#rfc.section.6.5">Subtitle Codec Mappings</a>
+</li>
+<ul><li>6.5.1.   <a href="#rfc.section.6.5.1">S_TEXT/UTF8</a>
+</li>
+<li>6.5.2.   <a href="#rfc.section.6.5.2">S_TEXT/SSA</a>
+</li>
+<li>6.5.3.   <a href="#rfc.section.6.5.3">S_TEXT/ASS</a>
+</li>
+<li>6.5.4.   <a href="#rfc.section.6.5.4">S_TEXT/USF</a>
+</li>
+<li>6.5.5.   <a href="#rfc.section.6.5.5">S_TEXT/WEBVTT</a>
+</li>
+<li>6.5.6.   <a href="#rfc.section.6.5.6">S_IMAGE/BMP</a>
+</li>
+<li>6.5.7.   <a href="#rfc.section.6.5.7">S_DVBSUB</a>
+</li>
+<li>6.5.8.   <a href="#rfc.section.6.5.8">S_VOBSUB</a>
+</li>
+<li>6.5.9.   <a href="#rfc.section.6.5.9">S_HDMV/PGS</a>
+</li>
+<li>6.5.10.   <a href="#rfc.section.6.5.10">S_HDMV/TEXTST</a>
+</li>
+<li>6.5.11.   <a href="#rfc.section.6.5.11">S_KATE</a>
+</li>
+</ul><li>6.6.   <a href="#rfc.section.6.6">Button Codec Mappings</a>
+</li>
+<ul><li>6.6.1.   <a href="#rfc.section.6.6.1">B_VOBBTN</a>
+</li>
+</ul></ul><li>7.   <a href="#rfc.section.7">Subtitles</a>
+</li>
+<ul><li>7.1.   <a href="#rfc.section.7.1">Images Subtitles</a>
+</li>
+<li>7.2.   <a href="#rfc.section.7.2">SRT Subtitles</a>
+</li>
+<li>7.3.   <a href="#rfc.section.7.3">SSA/ASS Subtitles</a>
+</li>
+<li>7.4.   <a href="#rfc.section.7.4">USF Subtitles</a>
+</li>
+<li>7.5.   <a href="#rfc.section.7.5">WebVTT</a>
+</li>
+<ul><li>7.5.1.   <a href="#rfc.section.7.5.1">Storage of WebVTT in Matroska</a>
+</li>
+<li>7.5.2.   <a href="#rfc.section.7.5.2">Examples of transformation</a>
+</li>
+<li>7.5.3.   <a href="#rfc.section.7.5.3">Storage of WebVTT in Matroska vs. WebM</a>
+</li>
+</ul><li>7.6.   <a href="#rfc.section.7.6">HDMV presentation graphics subtitles</a>
+</li>
+<ul><li>7.6.1.   <a href="#rfc.section.7.6.1">Storage of HDMV presentation graphics subtitles</a>
+</li>
+</ul><li>7.7.   <a href="#rfc.section.7.7">HDMV text subtitles</a>
+</li>
+<ul><li>7.7.1.   <a href="#rfc.section.7.7.1">Storage of HDMV text subtitles</a>
+</li>
+</ul><li>7.8.   <a href="#rfc.section.7.8">Digital Video Broadcasting (DVB) subtitles</a>
+</li>
+<ul><li>7.8.1.   <a href="#rfc.section.7.8.1">Storage of DVB subtitles</a>
+</li>
+</ul></ul><li>8.   <a href="#rfc.references">Normative References</a>
+</li>
+<li><a href="#rfc.authors">Authors' Addresses</a>
+</li>
+
+
+  </ul>
+
+  <h1 id="rfc.section.1">
+<a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a>
+</h1>
+<p id="rfc.section.1.p.1">Matroska aims to become THE standard of multimedia container formats. It stores interleaved and timestamped audio/video/subtitle data using various codecs. To interpret the codec data, a mapping between the way the data is stored in Matroska and how it is understood by such a codec is necessary.  </p>
+<p id="rfc.section.1.p.2">This document intends to define this mapping for many commonly used codecs in Matroska.  </p>
+<h1 id="rfc.section.2">
+<a href="#rfc.section.2">2.</a> <a href="#status-of-this-document" id="status-of-this-document">Status of this document</a>
+</h1>
+<p id="rfc.section.2.p.1">This document is a work-in-progress specification defining the Matroska file format as part of the <a href="https://datatracker.ietf.org/wg/cellar/charter/">IETF Cellar working group</a>. It uses basic elements and concept already defined in the Matroska specifications defined by this workgroup.  </p>
+<h1 id="rfc.section.3">
+<a href="#rfc.section.3">3.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
+</h1>
+<p id="rfc.section.3.p.1">This document inherits security considerations from the EBML and Matroska documents.  </p>
+<h1 id="rfc.section.4">
+<a href="#rfc.section.4">4.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a>
+</h1>
+<p id="rfc.section.4.p.1">To be determined.  </p>
+<h1 id="rfc.section.5">
+<a href="#rfc.section.5">5.</a> <a href="#notations-and-conventions" id="notations-and-conventions">Notations and Conventions</a>
+</h1>
+<p id="rfc.section.5.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="https://tools.ietf.org/html/rfc2119">RFC 2119</a>.  </p>
+<h1 id="rfc.section.6">
+<a href="#rfc.section.6">6.</a> <a href="#codec-mappings" id="codec-mappings">Codec Mappings</a>
+</h1>
+<p id="rfc.section.6.p.1">A <samp>Codec Mapping</samp> is a set of attributes to identify, name, and contextualise the format and characteristics of encoded data that can be contained within Matroska Clusters.  </p>
+<p id="rfc.section.6.p.2">Each TrackEntry used within Matroska MUST reference a defined <samp>Codec Mapping</samp> using the <samp>Codec ID</samp> to identify and describe the format of the encoded data in its associated Clusters. This <samp>Codec ID</samp> is a unique registered identifier that represents the encoding stored within the Track. Certain encodings MAY also require some form of codec initialisation in order to provide its decoder with context and technical metadata.  </p>
+<p id="rfc.section.6.p.3">The intention behind this list is not to list all existing audio and video codecs, but rather to list those codecs that are currently supported in Matroska and therefore need a well defined <samp>Codec ID</samp> so that all developers supporting Matroska will use the same <samp>Codec ID</samp>. If you feel we missed support for a very important codec, please tell us on our development mailing list (cellar at ietf.org).  </p>
+<h1 id="rfc.section.6.1">
+<a href="#rfc.section.6.1">6.1.</a> <a href="#defining-matroska-codec-support" id="defining-matroska-codec-support">Defining Matroska Codec Support</a>
+</h1>
+<p id="rfc.section.6.1.p.1">Support for a codec is defined in Matroska with the following values.  </p>
+<h1 id="rfc.section.6.1.1">
+<a href="#rfc.section.6.1.1">6.1.1.</a> <a href="#codec-id" id="codec-id">Codec ID</a>
+</h1>
+<p id="rfc.section.6.1.1.p.1">Each codec supported for storage in Matroska MUST have a unique <samp>Codec ID</samp>. Each <samp>Codec ID</samp> MUST be prefixed with the string from the following table according to the associated type of the codec. All characters of a <samp>Codec ID Prefix</samp> MUST be capital letters (A-Z) except for the last character of a <samp>Codec ID Prefix</samp> which MUST be an underscore ("_").  </p>
+<table cellpadding="3" cellspacing="0" class="tt full center">
+<thead><tr>
+<th class="center">Codec Type</th>
+<th class="center">Codec ID Prefix</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="center">Video</td>
+<td class="center">"V_"</td>
+</tr>
+<tr>
+<td class="center">Audio</td>
+<td class="center">"A_"</td>
+</tr>
+<tr>
+<td class="center">Subtitle</td>
+<td class="center">"S_"</td>
+</tr>
+<tr>
+<td class="center">Button</td>
+<td class="center">"B_"</td>
+</tr>
+</tbody>
+</table>
+<p id="rfc.section.6.1.1.p.2">Each <samp>Codec ID</samp> MUST include a <samp>Major Codec ID</samp> immediately following the <samp>Codec ID Prefix</samp>. A <samp>Major Codec ID</samp> MAY be followed by an OPTIONAL <samp>Codec ID Suffix</samp> to communicate a refinement of the <samp>Major Codec ID</samp>. If a <samp>Codec ID Suffix</samp> is used, then the <samp>Codec ID</samp> MUST include a forward slash ("/") as a separator between the <samp>Major Codec ID</samp> and the <samp>Codec ID Suffix</samp>. The <samp>Major Codec ID</samp> MUST be composed of only capital letters (A-Z) and numbers (0-9). The <samp>Codec ID Suffix</samp> MUST be composed of only capital letters (A-Z), numbers (0-9), underscore ("_"), and forward slash ("/").  </p>
+<p id="rfc.section.6.1.1.p.3">The following table provides examples of valid <samp>Codec IDs</samp> and their components: </p>
+<table cellpadding="3" cellspacing="0" class="tt full center">
+<thead><tr>
+<th class="center">Codec ID Prefix</th>
+<th class="left">Major Codec ID</th>
+<th class="left">Separator</th>
+<th class="left">Codec ID Suffix</th>
+<th class="left">Codec ID</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="center">A_</td>
+<td class="left">AAC</td>
+<td class="left">/</td>
+<td class="left">MPEG2/LC/SBR</td>
+<td class="left">A_AAC/MPEG2/LC/SBR</td>
+</tr>
+<tr>
+<td class="center">V_</td>
+<td class="left">MPEG4</td>
+<td class="left">/</td>
+<td class="left">ISO/ASP</td>
+<td class="left">V_MPEG4/ISO/ASP</td>
+</tr>
+<tr>
+<td class="center">V_</td>
+<td class="left">MPEG1</td>
+<td class="left"></td>
+<td class="left"></td>
+<td class="left">V_MPEG1</td>
+</tr>
+</tbody>
+</table>
+<h1 id="rfc.section.6.1.2">
+<a href="#rfc.section.6.1.2">6.1.2.</a> <a href="#codec-name" id="codec-name">Codec Name</a>
+</h1>
+<p id="rfc.section.6.1.2.p.1">Each encoding supported for storage in Matroska MUST have a <samp>Codec Name</samp>. The <samp>Codec Name</samp> provides a readable label for the encoding.  </p>
+<h1 id="rfc.section.6.1.3">
+<a href="#rfc.section.6.1.3">6.1.3.</a> <a href="#description" id="description">Description</a>
+</h1>
+<p id="rfc.section.6.1.3.p.1">An optional description for the encoding. This value is only intended for human consumption.  </p>
+<h1 id="rfc.section.6.1.4">
+<a href="#rfc.section.6.1.4">6.1.4.</a> <a href="#initialisation" id="initialisation">Initialisation</a>
+</h1>
+<p id="rfc.section.6.1.4.p.1">Each encoding supported for storage in Matroska MUST have a defined Initialisation. The Initialisation MUST describe the storage of data necessary to initialise the decoder, which MUST be stored within the <samp>CodecPrivate Element</samp>. When the Initialisation is updated within a track then that updated Initialisation data MUST be written into the <samp>CodecState Element</samp> of the first <samp>Cluster</samp> to require it. If the encoding does not require any form of Initialisation then <samp>none</samp> MUST be used to define the Initialisation and the <samp>CodecPrivate Element</samp> SHOULD NOT be written and MUST be ignored. Data that is defined Initialisation to be stored in the <samp>CodecPrivate Element</samp> is known as <samp>Private Data</samp>.  </p>
+<h1 id="rfc.section.6.1.5">
+<a href="#rfc.section.6.1.5">6.1.5.</a> <a href="#citation" id="citation">Citation</a>
+</h1>
+<p id="rfc.section.6.1.5.p.1">Documentation of the associated normative and informative references for the codec is RECOMMENDED.  </p>
+<h1 id="rfc.section.6.1.6">
+<a href="#rfc.section.6.1.6">6.1.6.</a> <a href="#deprecation-date" id="deprecation-date">Deprecation Date</a>
+</h1>
+<p id="rfc.section.6.1.6.p.1">A timestamp, expressed in <a href="#RFC3339" class="xref">[RFC3339]</a> that notes when support for the <samp>Codec Mapping</samp> within Matroska was deprecated. If a <samp>Codec Mapping</samp> is defined with a <samp>Deprecation Date</samp>, then it is RECOMMENDED that Matroska writers SHOULD NOT use the <samp>Codec Mapping</samp> after the <samp>Deprecation Date</samp>.  </p>
+<h1 id="rfc.section.6.1.7">
+<a href="#rfc.section.6.1.7">6.1.7.</a> <a href="#superseded-by" id="superseded-by">Superseded By</a>
+</h1>
+<p id="rfc.section.6.1.7.p.1">A <samp>Codec Mapping</samp> MAY only be defined with a <samp>Superseded By</samp> value, if it has an expressed <samp>Deprecation Date</samp>. If used, the <samp>Superseded By</samp> value MUST store the <samp>Codec ID</samp> of another <samp>Codec Mapping</samp> that has superseded the <samp>Codec Mapping</samp>.  </p>
+<h1 id="rfc.section.6.2">
+<a href="#rfc.section.6.2">6.2.</a> <a href="#recommendations-for-the-creation-of-new-codec-mappings" id="recommendations-for-the-creation-of-new-codec-mappings">Recommendations for the Creation of New Codec Mappings</a>
+</h1>
+<p id="rfc.section.6.2.p.1">Creators of new <samp>Codec Mappings</samp> to be used in the context of Matroska: </p>
+<p></p>
+
+<ul>
+<li>SHOULD assume that all <samp>Codec Mappings</samp> they create might become standardised, public, commonly deployed, or usable across multiple implementations.</li>
+<li>SHOULD employ meaningful values for <samp>Codec ID</samp> and <samp>Codec Name</samp> that they have reason to believe are currently unused.</li>
+<li>SHOULD NOT prefix their <samp>Codec ID</samp> with "X_" or similar constructs.</li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.6.2.p.3">These recommendations are based upon Section 3 of <a href="#RFC6648" class="xref">[RFC6648]</a>.  </p>
+<h1 id="rfc.section.6.3">
+<a href="#rfc.section.6.3">6.3.</a> <a href="#video-codec-mappings" id="video-codec-mappings">Video Codec Mappings</a>
+</h1>
+<h1 id="rfc.section.6.3.1">
+<a href="#rfc.section.6.3.1">6.3.1.</a> <a href="#vmsvfwfourcc" id="vmsvfwfourcc">V_MS/VFW/FOURCC</a>
+</h1>
+<p id="rfc.section.6.3.1.p.1">Codec ID: <samp>V_MS/VFW/FOURCC</samp> </p>
+<p id="rfc.section.6.3.1.p.2">Codec Name: Microsoft (TM) Video Codec Manager (VCM) </p>
+<p id="rfc.section.6.3.1.p.3">Description: The private data contains the VCM structure BITMAPINFOHEADER including the extra private bytes, as <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd318229(v=vs.85).aspx">defined by Microsoft</a>. The data are stored in little endian format (like on IA32 machines). Where is the Huffman table stored in HuffYUV, not AVISTREAMINFO ??? And the FourCC, not in AVISTREAMINFO.fccHandler ??? </p>
+<p id="rfc.section.6.3.1.p.4">Initialisation: <samp>Private Data</samp> contains the VCM structure BITMAPINFOHEADER including the extra private bytes, as defined by Microsoft in <span>&lt;</span><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd183376(v=vs.85).aspx">https://msdn.microsoft.com/en-us/library/windows/desktop/dd183376(v=vs.85).aspx</a><span>&gt;</span>.  </p>
+<p id="rfc.section.6.3.1.p.5">Citation: <span>&lt;</span><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd183376(v=vs.85).aspx">https://msdn.microsoft.com/en-us/library/windows/desktop/dd183376(v=vs.85).aspx</a><span>&gt;</span> </p>
+<h1 id="rfc.section.6.3.2">
+<a href="#rfc.section.6.3.2">6.3.2.</a> <a href="#vuncompressed" id="vuncompressed">V_UNCOMPRESSED</a>
+</h1>
+<p id="rfc.section.6.3.2.p.1">Codec ID: V_UNCOMPRESSED </p>
+<p id="rfc.section.6.3.2.p.2">Codec Name: Video, raw uncompressed video frames </p>
+<p id="rfc.section.6.3.2.p.3">Description: All details about the used colour specs and bit depth are to be put/read from the KaxCodecColourSpace elements.  </p>
+<p id="rfc.section.6.3.2.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.3.3">
+<a href="#rfc.section.6.3.3">6.3.3.</a> <a href="#vmpeg4isosp" id="vmpeg4isosp">V_MPEG4/ISO/SP</a>
+</h1>
+<p id="rfc.section.6.3.3.p.1">Codec ID: V_MPEG4/ISO/SP </p>
+<p id="rfc.section.6.3.3.p.2">Codec Name: MPEG4 ISO simple profile (DivX4) </p>
+<p id="rfc.section.6.3.3.p.3">Description: Stream was created via improved codec API (UCI) or even transmuxed from AVI (no b-frames in Simple Profile), frame order is coding order.  </p>
+<p id="rfc.section.6.3.3.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.3.4">
+<a href="#rfc.section.6.3.4">6.3.4.</a> <a href="#vmpeg4isoasp" id="vmpeg4isoasp">V_MPEG4/ISO/ASP</a>
+</h1>
+<p id="rfc.section.6.3.4.p.1">Codec ID: V_MPEG4/ISO/ASP </p>
+<p id="rfc.section.6.3.4.p.2">Codec Name: MPEG4 ISO advanced simple profile (DivX5, XviD, FFMPEG) </p>
+<p id="rfc.section.6.3.4.p.3">Description: Stream was created via improved codec API (UCI) or transmuxed from MP4, not simply transmuxed from AVI. Note there are differences how b-frames are handled in these native streams, when being compared to a VfW created stream, as here there are <samp>no</samp> dummy frames inserted, the frame order is exactly the same as the coding order, same as in MP4 streams.  </p>
+<p id="rfc.section.6.3.4.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.3.5">
+<a href="#rfc.section.6.3.5">6.3.5.</a> <a href="#vmpeg4isoap" id="vmpeg4isoap">V_MPEG4/ISO/AP</a>
+</h1>
+<p id="rfc.section.6.3.5.p.1">Codec ID: V_MPEG4/ISO/AP </p>
+<p id="rfc.section.6.3.5.p.2">Codec Name: MPEG4 ISO advanced profile </p>
+<p id="rfc.section.6.3.5.p.3">Description: Stream was created via improved codec API (UCI) or transmuxed from MP4, not simply transmuxed from AVI. Note there are differences how b-frames are handled in these native streams, when being compared to a VfW created stream, as here there are <samp>no</samp> dummy frames inserted, the frame order is exactly the same as the coding order, same as in MP4 streams.  </p>
+<p id="rfc.section.6.3.5.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.3.6">
+<a href="#rfc.section.6.3.6">6.3.6.</a> <a href="#vmpeg4msv3" id="vmpeg4msv3">V_MPEG4/MS/V3</a>
+</h1>
+<p id="rfc.section.6.3.6.p.1">Codec ID: V_MPEG4/MS/V3 </p>
+<p id="rfc.section.6.3.6.p.2">Codec Name: Microsoft (TM) MPEG4 V3 </p>
+<p id="rfc.section.6.3.6.p.3">Description: Microsoft (TM) MPEG4 V3 and derivates, means DivX3, Angelpotion, SMR, etc.; stream was created using VfW codec or transmuxed from AVI; note that V1/V2 are covered in VfW compatibility mode.  </p>
+<p id="rfc.section.6.3.6.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.3.7">
+<a href="#rfc.section.6.3.7">6.3.7.</a> <a href="#vmpeg1" id="vmpeg1">V_MPEG1</a>
+</h1>
+<p id="rfc.section.6.3.7.p.1">Codec ID: V_MPEG1 </p>
+<p id="rfc.section.6.3.7.p.2">Codec Name: MPEG 1 </p>
+<p id="rfc.section.6.3.7.p.3">Description: The Matroska video stream will contain a demuxed Elementary Stream (ES), where block boundaries are still to be defined. Its RECOMMENDED to use MPEG2MKV.exe for creating those files, and to compare the results with self-made implementations </p>
+<p id="rfc.section.6.3.7.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.3.8">
+<a href="#rfc.section.6.3.8">6.3.8.</a> <a href="#vmpeg2" id="vmpeg2">V_MPEG2</a>
+</h1>
+<p id="rfc.section.6.3.8.p.1">Codec ID: V_MPEG2 </p>
+<p id="rfc.section.6.3.8.p.2">Codec Name: MPEG 2 </p>
+<p id="rfc.section.6.3.8.p.3">Description: The Matroska video stream will contain a demuxed Elementary Stream (ES), where block boundaries are still to be defined. Its RECOMMENDED to use MPEG2MKV.exe for creating those files, and to compare the results with self-made implementations </p>
+<p id="rfc.section.6.3.8.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.3.9">
+<a href="#rfc.section.6.3.9">6.3.9.</a> <a href="#vrealrv10" id="vrealrv10">V_REAL/RV10</a>
+</h1>
+<p id="rfc.section.6.3.9.p.1">Codec ID: V_REAL/RV10 </p>
+<p id="rfc.section.6.3.9.p.2">Codec Name: RealVideo 1.0 aka RealVideo 5 </p>
+<p id="rfc.section.6.3.9.p.3">Description: Individual slices from the Real container are combined into a single frame.  </p>
+<p id="rfc.section.6.3.9.p.4">Initialisation: The <samp>Private Data</samp> contains a <samp>real_video_props_t</samp> structure in Big Endian byte order as found in <a href="https://github.com/mbunkus/mkvtoolnix/blob/master/lib/librmff/librmff.h">librmff</a>.  </p>
+<h1 id="rfc.section.6.3.10">
+<a href="#rfc.section.6.3.10">6.3.10.</a> <a href="#vrealrv20" id="vrealrv20">V_REAL/RV20</a>
+</h1>
+<p id="rfc.section.6.3.10.p.1">Codec ID: V_REAL/RV20 </p>
+<p id="rfc.section.6.3.10.p.2">Codec Name: RealVideo G2 and RealVideo G2+SVT </p>
+<p id="rfc.section.6.3.10.p.3">Description: Individual slices from the Real container are combined into a single frame.  </p>
+<p id="rfc.section.6.3.10.p.4">Initialisation: The <samp>Private Data</samp> contains a <samp>real_video_props_t</samp> structure in Big Endian byte order as found in <a href="https://github.com/mbunkus/mkvtoolnix/blob/master/lib/librmff/librmff.h">librmff</a>.  </p>
+<h1 id="rfc.section.6.3.11">
+<a href="#rfc.section.6.3.11">6.3.11.</a> <a href="#vrealrv30" id="vrealrv30">V_REAL/RV30</a>
+</h1>
+<p id="rfc.section.6.3.11.p.1">Codec ID: V_REAL/RV30 </p>
+<p id="rfc.section.6.3.11.p.2">Codec Name: RealVideo 8 </p>
+<p id="rfc.section.6.3.11.p.3">Description: Individual slices from the Real container are combined into a single frame.  </p>
+<p id="rfc.section.6.3.11.p.4">Initialisation: The <samp>Private Data</samp> contains a <samp>real_video_props_t</samp> structure in Big Endian byte order as found in <a href="https://github.com/mbunkus/mkvtoolnix/blob/master/lib/librmff/librmff.h">librmff</a>.  </p>
+<h1 id="rfc.section.6.3.12">
+<a href="#rfc.section.6.3.12">6.3.12.</a> <a href="#vrealrv40" id="vrealrv40">V_REAL/RV40</a>
+</h1>
+<p id="rfc.section.6.3.12.p.1">Codec ID: V_REAL/RV40 </p>
+<p id="rfc.section.6.3.12.p.2">Codec Name: rv40 : RealVideo 9 </p>
+<p id="rfc.section.6.3.12.p.3">Description: Individual slices from the Real container are combined into a single frame.  </p>
+<p id="rfc.section.6.3.12.p.4">Initialisation: The <samp>Private Data</samp> contains a <samp>real_video_props_t</samp> structure in Big Endian byte order as found in <a href="https://github.com/mbunkus/mkvtoolnix/blob/master/lib/librmff/librmff.h">librmff</a>.  </p>
+<h1 id="rfc.section.6.3.13">
+<a href="#rfc.section.6.3.13">6.3.13.</a> <a href="#vquicktime" id="vquicktime">V_QUICKTIME</a>
+</h1>
+<p id="rfc.section.6.3.13.p.1">Codec ID: V_QUICKTIME </p>
+<p id="rfc.section.6.3.13.p.2">Codec Name: Video taken from QuickTime(TM) files </p>
+<p id="rfc.section.6.3.13.p.3">Description: Several codecs as stored in QuickTime, e.g. Sorenson or Cinepak.  </p>
+<p id="rfc.section.6.3.13.p.4">Initialisation: The <samp>Private Data</samp> contains all additional data that is stored in the 'stsd' (sample description) atom in the QuickTime file <strong>after</strong> the mandatory video descriptor structure (starting with the size and FourCC fields). For an explanation of the QuickTime file format read <a href="https://developer.apple.com/library/mac/documentation/QuickTime/QTFF/QTFFPreface/qtffPreface.html">QuickTime File Format Specification</a>.  </p>
+<h1 id="rfc.section.6.3.14">
+<a href="#rfc.section.6.3.14">6.3.14.</a> <a href="#vtheora" id="vtheora">V_THEORA</a>
+</h1>
+<p id="rfc.section.6.3.14.p.1">Codec ID: V_THEORA </p>
+<p id="rfc.section.6.3.14.p.2">Codec Name: Theora </p>
+<p id="rfc.section.6.3.14.p.3">Initialisation: The <samp>Private Data</samp> contains the first three Theora packets in order. The lengths of the packets precedes them. The actual layout is: </p>
+<p></p>
+
+<ul>
+<li>Byte 1: number of distinct packets '<samp>#p</samp>' minus one inside the CodecPrivate block. This MUST be '2' for current (as of 2016-07-08) Theora headers.</li>
+<li>Bytes 2..n: lengths of the first '<samp>#p</samp>' packets, coded in Xiph-style lacing. The length of the last packet is the length of the CodecPrivate block minus the lengths coded in these bytes minus one.</li>
+<li>Bytes n+1..: The Theora identification header, followed by the commend header followed by the codec setup header. Those are described in the <a href="http://www.theora.org/doc/Theora.pdf">Theora specs</a>.</li>
+</ul>
+
+<p> </p>
+<h1 id="rfc.section.6.3.15">
+<a href="#rfc.section.6.3.15">6.3.15.</a> <a href="#vprores" id="vprores">V_PRORES</a>
+</h1>
+<p id="rfc.section.6.3.15.p.1">Codec ID: V_PRORES </p>
+<p id="rfc.section.6.3.15.p.2">Codec Name: Apple ProRes </p>
+<p id="rfc.section.6.3.15.p.3">Initialisation: The <samp>Private Data</samp> contains the FourCC as found in MP4 movies: </p>
+<p></p>
+
+<ul>
+<li>ap4x: ProRes 4444 XQ</li>
+<li>ap4h: ProRes 4444</li>
+<li>apch: ProRes 422 High Quality</li>
+<li>apcn: ProRes 422 Standard Definition</li>
+<li>apcs: ProRes 422 LT</li>
+<li>apco: ProRes 422 Proxy</li>
+</ul>
+
+<p> </p>
+<p><a href="http://wiki.multimedia.cx/index.php?title=Apple_ProRes#Frame_layout">this page for more technical details on ProRes</a> </p>
+<h1 id="rfc.section.6.3.16">
+<a href="#rfc.section.6.3.16">6.3.16.</a> <a href="#vvp8" id="vvp8">V_VP8</a>
+</h1>
+<p id="rfc.section.6.3.16.p.1">Codec ID: V_VP8 </p>
+<p id="rfc.section.6.3.16.p.2">Codec Name: VP8 Codec format </p>
+<p id="rfc.section.6.3.16.p.3">Description: VP8 is an open and royalty free video compression format developed by Google and created by On2 Technologies as a successor to VP7. <a href="#RFC6386" class="xref">[RFC6386]</a> </p>
+<p id="rfc.section.6.3.16.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.3.17">
+<a href="#rfc.section.6.3.17">6.3.17.</a> <a href="#vvp9" id="vvp9">V_VP9</a>
+</h1>
+<p id="rfc.section.6.3.17.p.1">Codec ID: V_VP9 </p>
+<p id="rfc.section.6.3.17.p.2">Codec Name: VP9 Codec format </p>
+<p id="rfc.section.6.3.17.p.3">Description: VP9 is an open and royalty free video compression format developed by Google as a successor to VP8. <a href="https://www.webmproject.org/vp9/">Draft VP9 Bitstream and Decoding Process Specification</a> </p>
+<p id="rfc.section.6.3.17.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.3.18">
+<a href="#rfc.section.6.3.18">6.3.18.</a> <a href="#vffv1" id="vffv1">V_FFV1</a>
+</h1>
+<p id="rfc.section.6.3.18.p.1">Codec ID: V_FFV1 </p>
+<p id="rfc.section.6.3.18.p.2">Codec Name: FF Video Codec 1 </p>
+<p id="rfc.section.6.3.18.p.3">Description: FFV1 is a lossless intra-frame video encoding format designed to efficiently compress video data in a variety of pixel formats. Compared to uncompressed video, FFV1 offers storage compression, frame fixity, and self-description, which makes FFV1 useful as a preservation or intermediate video format. <a href="https://datatracker.ietf.org/doc/draft-niedermayer-cellar-ffv1/">Draft FFV1 Specification</a> </p>
+<p id="rfc.section.6.3.18.p.4">Initialisation: For FFV1 versions 0 or 1, <samp>Private Data</samp> SHOULD NOT be written. For FFV1 version 3 or greater, the <samp>Private Data</samp> MUST contain the FFV1 Configuration Record structure, as defined in <span>&lt;</span><a href="https://tools.ietf.org/html/draft-niedermayer-cellar-ffv1-01#section-4.1">https://tools.ietf.org/html/draft-niedermayer-cellar-ffv1-01#section-4.1</a><span>&gt;</span>, and no other data.  </p>
+<h1 id="rfc.section.6.4">
+<a href="#rfc.section.6.4">6.4.</a> <a href="#audio-codec-mappings" id="audio-codec-mappings">Audio Codec Mappings</a>
+</h1>
+<h1 id="rfc.section.6.4.1">
+<a href="#rfc.section.6.4.1">6.4.1.</a> <a href="#ampegl3" id="ampegl3">A_MPEG/L3</a>
+</h1>
+<p id="rfc.section.6.4.1.p.1">Codec ID: A_MPEG/L3 </p>
+<p id="rfc.section.6.4.1.p.2">Codec Name: MPEG Audio 1, 2, 2.5 Layer III </p>
+<p id="rfc.section.6.4.1.p.3">Description: The data contain everything needed for playback in the MPEG Audio header of each frame. Corresponding ACM wFormatTag : 0x0055 </p>
+<p id="rfc.section.6.4.1.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.2">
+<a href="#rfc.section.6.4.2">6.4.2.</a> <a href="#ampegl2" id="ampegl2">A_MPEG/L2</a>
+</h1>
+<p id="rfc.section.6.4.2.p.1">Codec ID: A_MPEG/L2 </p>
+<p id="rfc.section.6.4.2.p.2">Codec Name: MPEG Audio 1, 2 Layer II </p>
+<p id="rfc.section.6.4.2.p.3">Description: The data contain everything needed for playback in the MPEG Audio header of each frame. Corresponding ACM wFormatTag : 0x0050 </p>
+<p id="rfc.section.6.4.2.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.3">
+<a href="#rfc.section.6.4.3">6.4.3.</a> <a href="#ampegl1" id="ampegl1">A_MPEG/L1</a>
+</h1>
+<p id="rfc.section.6.4.3.p.1">Codec ID: A_MPEG/L1 </p>
+<p id="rfc.section.6.4.3.p.2">Codec Name: MPEG Audio 1, 2 Layer I </p>
+<p id="rfc.section.6.4.3.p.3">Description: The data contain everything needed for playback in the MPEG Audio header of each frame. Corresponding ACM wFormatTag : 0x0050 </p>
+<p id="rfc.section.6.4.3.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.4">
+<a href="#rfc.section.6.4.4">6.4.4.</a> <a href="#apcmintbig" id="apcmintbig">A_PCM/INT/BIG</a>
+</h1>
+<p id="rfc.section.6.4.4.p.1">Codec ID: A_PCM/INT/BIG </p>
+<p id="rfc.section.6.4.4.p.2">Codec Name: PCM Integer Big Endian </p>
+<p id="rfc.section.6.4.4.p.3">Description: The audio bit depth MUST be read and set from the <samp>BitDepth Element</samp>. Audio samples MUST be considered as signed values, except if the audio bit depth is <samp>8</samp> which MUST be interpreted as unsigned values. Corresponding ACM wFormatTag : ??? </p>
+<p id="rfc.section.6.4.4.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.5">
+<a href="#rfc.section.6.4.5">6.4.5.</a> <a href="#apcmintlit" id="apcmintlit">A_PCM/INT/LIT</a>
+</h1>
+<p id="rfc.section.6.4.5.p.1">Codec ID: A_PCM/INT/LIT </p>
+<p id="rfc.section.6.4.5.p.2">Codec Name: PCM Integer Little Endian </p>
+<p id="rfc.section.6.4.5.p.3">Description: The audio bit depth MUST be read and set from the <samp>BitDepth Element</samp>. Audio samples MUST be considered as signed values, except if the audio bit depth is <samp>8</samp> which MUST be interpreted as unsigned values. Corresponding ACM wFormatTag : 0x0001 </p>
+<p id="rfc.section.6.4.5.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.6">
+<a href="#rfc.section.6.4.6">6.4.6.</a> <a href="#apcmfloatieee" id="apcmfloatieee">A_PCM/FLOAT/IEEE</a>
+</h1>
+<p id="rfc.section.6.4.6.p.1">Codec ID: A_PCM/FLOAT/IEEE </p>
+<p id="rfc.section.6.4.6.p.2">Codec Name: Floating Point, IEEE compatible </p>
+<p id="rfc.section.6.4.6.p.3">Description: The audio bit depth MUST be read and set from the <samp>BitDepth Element</samp> (32 bit in most cases). The floats are stored in little endian order (most common float format). Corresponding ACM wFormatTag : 0x0003 </p>
+<p id="rfc.section.6.4.6.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.7">
+<a href="#rfc.section.6.4.7">6.4.7.</a> <a href="#ampc" id="ampc">A_MPC</a>
+</h1>
+<p id="rfc.section.6.4.7.p.1">Codec ID: A_MPC </p>
+<p id="rfc.section.6.4.7.p.2">Codec Name: MPC (musepack) SV8 </p>
+<p id="rfc.section.6.4.7.p.3">Description: The main developer for musepack has requested that we wait until the SV8 framing has been fully defined for musepack before defining how to store it in Matroska.  </p>
+<h1 id="rfc.section.6.4.8">
+<a href="#rfc.section.6.4.8">6.4.8.</a> <a href="#aac3" id="aac3">A_AC3</a>
+</h1>
+<p id="rfc.section.6.4.8.p.1">Codec ID: A_AC3 </p>
+<p id="rfc.section.6.4.8.p.2">Codec Name: (Dolby&#8482;) AC3 </p>
+<p id="rfc.section.6.4.8.p.3">Description: BSID &lt;= 8 !! The private data is void ??? Corresponding ACM wFormatTag : 0x2000 ; channel number have to be read from the corresponding audio element </p>
+<h1 id="rfc.section.6.4.9">
+<a href="#rfc.section.6.4.9">6.4.9.</a> <a href="#aac3bsid9" id="aac3bsid9">A_AC3/BSID9</a>
+</h1>
+<p id="rfc.section.6.4.9.p.1">Codec ID: A_AC3/BSID9 </p>
+<p id="rfc.section.6.4.9.p.2">Codec Name: (Dolby&#8482;) AC3 </p>
+<p id="rfc.section.6.4.9.p.3">Description: The ac3 frame header has, similar to the mpeg-audio header a version field. Normal ac3 is defined as bitstream id 8 (5 Bits, numbers are 0-15). Everything below 8 is still compatible with all decoders that handle 8 correctly. Everything higher are additions that break decoder compatibility.  For the samplerates 24kHz (00); 22,05kHz (01) and 16kHz (10) the BSID is 9 For the samplerates 12kHz (00); 11,025kHz (01) and 8kHz (10) the BSID is 10 </p>
+<p id="rfc.section.6.4.9.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.10">
+<a href="#rfc.section.6.4.10">6.4.10.</a> <a href="#aac3bsid10" id="aac3bsid10">A_AC3/BSID10</a>
+</h1>
+<p id="rfc.section.6.4.10.p.1">Codec ID: A_AC3/BSID10 </p>
+<p id="rfc.section.6.4.10.p.2">Codec Name: (Dolby&#8482;) AC3 </p>
+<p id="rfc.section.6.4.10.p.3">Description: The ac3 frame header has, similar to the mpeg-audio header a version field. Normal ac3 is defined as bitstream id 8 (5 Bits, numbers are 0-15). Everything below 8 is still compatible with all decoders that handle 8 correctly. Everything higher are additions that break decoder compatibility.  For the samplerates 24kHz (00); 22,05kHz (01) and 16kHz (10) the BSID is 9 For the samplerates 12kHz (00); 11,025kHz (01) and 8kHz (10) the BSID is 10 </p>
+<p id="rfc.section.6.4.10.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.11">
+<a href="#rfc.section.6.4.11">6.4.11.</a> <a href="#aalac" id="aalac">A_ALAC</a>
+</h1>
+<p id="rfc.section.6.4.11.p.1">Codec ID: A_ALAC </p>
+<p id="rfc.section.6.4.11.p.2">Codec Name: ALAC (Apple Lossless Audio Codec) </p>
+<p id="rfc.section.6.4.11.p.3">Initialisation: The <samp>Private Data</samp> contains ALAC's magic cookie (both the codec specific configuration as well as the optional channel layout information). Its format is described in <a href="http://alac.macosforge.org/trac/browser/trunk/ALACMagicCookieDescription.txt">ALAC's official source code</a>.  </p>
+<h1 id="rfc.section.6.4.12">
+<a href="#rfc.section.6.4.12">6.4.12.</a> <a href="#adts" id="adts">A_DTS</a>
+</h1>
+<p id="rfc.section.6.4.12.p.1">Codec ID: A_DTS </p>
+<p id="rfc.section.6.4.12.p.2">Codec Name: Digital Theatre System </p>
+<p id="rfc.section.6.4.12.p.3">Description: Supports DTS, DTS-ES, DTS-96/26, DTS-HD High Resolution Audio and DTS-HD Master Audio. The private data is void. Corresponding ACM wFormatTag : 0x2001 </p>
+<p id="rfc.section.6.4.12.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.13">
+<a href="#rfc.section.6.4.13">6.4.13.</a> <a href="#adtsexpress" id="adtsexpress">A_DTS/EXPRESS</a>
+</h1>
+<p id="rfc.section.6.4.13.p.1">Codec ID: A_DTS/EXPRESS </p>
+<p id="rfc.section.6.4.13.p.2">Codec Name: Digital Theatre System Express </p>
+<p id="rfc.section.6.4.13.p.3">Description: DTS Express (a.k.a. LBR) audio streams. The private data is void. Corresponding ACM wFormatTag : 0x2001 </p>
+<p id="rfc.section.6.4.13.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.14">
+<a href="#rfc.section.6.4.14">6.4.14.</a> <a href="#adtslossless" id="adtslossless">A_DTS/LOSSLESS</a>
+</h1>
+<p id="rfc.section.6.4.14.p.1">Codec ID: A_DTS/LOSSLESS </p>
+<p id="rfc.section.6.4.14.p.2">Codec Name: Digital Theatre System Lossless </p>
+<p id="rfc.section.6.4.14.p.3">Description: DTS Lossless audio that does not have a core substream. The private data is void. Corresponding ACM wFormatTag : 0x2001 </p>
+<p id="rfc.section.6.4.14.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.15">
+<a href="#rfc.section.6.4.15">6.4.15.</a> <a href="#avorbis" id="avorbis">A_VORBIS</a>
+</h1>
+<p id="rfc.section.6.4.15.p.1">Codec ID: A_VORBIS </p>
+<p id="rfc.section.6.4.15.p.2">Codec Name: Vorbis </p>
+<p id="rfc.section.6.4.15.p.3">Initialisation: The <samp>Private Data</samp> contains the first three Vorbis packet in order. The lengths of the packets precedes them. The actual layout is: - Byte 1: number of distinct packets '<samp>#p</samp>' minus one inside the CodecPrivate block. This MUST be '2' for current (as of 2016-07-08) Vorbis headers.  - Bytes 2..n: lengths of the first '<samp>#p</samp>' packets, coded in Xiph-style lacing. The length of the last packet is the length of the CodecPrivate block minus the lengths coded in these bytes minus one.  - Bytes n+1..: The <a href="https://xiph.org/vorbis/doc/Vorbis_I_spec.html">Vorbis identification header</a>, followed by the <a href="https://xiph.org/vorbis/doc/v-comment.html">Vorbis comment header</a> followed by the <a href="https://xiph.org/vorbis/doc/Vorbis_I_spec.html">codec setup header</a>.  </p>
+<h1 id="rfc.section.6.4.16">
+<a href="#rfc.section.6.4.16">6.4.16.</a> <a href="#aflac" id="aflac">A_FLAC</a>
+</h1>
+<p id="rfc.section.6.4.16.p.1">Codec ID: A_FLAC </p>
+<p id="rfc.section.6.4.16.p.2">Codec Name: <a href="http://flac.sourceforge.net/">FLAC (Free Lossless Audio Codec)</a> </p>
+<p id="rfc.section.6.4.16.p.3">Initialisation: The <samp>Private Data</samp> contains all the header/metadata packets before the first data packet. These include the first header packet containing only the word <samp>fLaC</samp> as well as all metadata packets.  </p>
+<h1 id="rfc.section.6.4.17">
+<a href="#rfc.section.6.4.17">6.4.17.</a> <a href="#areal144" id="areal144">A_REAL/14_4</a>
+</h1>
+<p id="rfc.section.6.4.17.p.1">Codec ID: A_REAL/14_4 </p>
+<p id="rfc.section.6.4.17.p.2">Codec Name: Real Audio 1 </p>
+<p id="rfc.section.6.4.17.p.3">Initialisation: The <samp>Private Data</samp> contains either the "real_audio_v4_props_t" or the "real_audio_v5_props_t" structure (differentiated by their "version" field; Big Endian byte order) as found in <a href="https://github.com/mbunkus/mkvtoolnix/blob/master/lib/librmff/librmff.h">librmff</a>.  </p>
+<h1 id="rfc.section.6.4.18">
+<a href="#rfc.section.6.4.18">6.4.18.</a> <a href="#areal288" id="areal288">A_REAL/28_8</a>
+</h1>
+<p id="rfc.section.6.4.18.p.1">Codec ID: A_REAL/28_8 </p>
+<p id="rfc.section.6.4.18.p.2">Codec Name: Real Audio 2 </p>
+<p id="rfc.section.6.4.18.p.3">Initialisation: The <samp>Private Data</samp> contains either the "real_audio_v4_props_t" or the "real_audio_v5_props_t" structure (differentiated by their "version" field; Big Endian byte order) as found in <a href="https://github.com/mbunkus/mkvtoolnix/blob/master/lib/librmff/librmff.h">librmff</a>.  </p>
+<h1 id="rfc.section.6.4.19">
+<a href="#rfc.section.6.4.19">6.4.19.</a> <a href="#arealcook" id="arealcook">A_REAL/COOK</a>
+</h1>
+<p id="rfc.section.6.4.19.p.1">Codec ID: A_REAL/COOK </p>
+<p id="rfc.section.6.4.19.p.2">Codec Name: Real Audio Cook Codec (codename: Gecko) </p>
+<p id="rfc.section.6.4.19.p.3">Initialisation: The <samp>Private Data</samp> contains either the "real_audio_v4_props_t" or the "real_audio_v5_props_t" structure (differentiated by their "version" field; Big Endian byte order) as found in <a href="https://github.com/mbunkus/mkvtoolnix/blob/master/lib/librmff/librmff.h">librmff</a>.  </p>
+<h1 id="rfc.section.6.4.20">
+<a href="#rfc.section.6.4.20">6.4.20.</a> <a href="#arealsipr" id="arealsipr">A_REAL/SIPR</a>
+</h1>
+<p id="rfc.section.6.4.20.p.1">Codec ID: A_REAL/SIPR </p>
+<p id="rfc.section.6.4.20.p.2">Codec Name: Sipro Voice Codec </p>
+<p id="rfc.section.6.4.20.p.3">Initialisation: The <samp>Private Data</samp> contains either the "real_audio_v4_props_t" or the "real_audio_v5_props_t" structure (differentiated by their "version" field; Big Endian byte order) as found in <a href="https://github.com/mbunkus/mkvtoolnix/blob/master/lib/librmff/librmff.h">librmff</a>.  </p>
+<h1 id="rfc.section.6.4.21">
+<a href="#rfc.section.6.4.21">6.4.21.</a> <a href="#arealralf" id="arealralf">A_REAL/RALF</a>
+</h1>
+<p id="rfc.section.6.4.21.p.1">Codec ID: A_REAL/RALF </p>
+<p id="rfc.section.6.4.21.p.2">Codec Name: Real Audio Lossless Format </p>
+<p id="rfc.section.6.4.21.p.3">Initialisation: The <samp>Private Data</samp> contains either the "real_audio_v4_props_t" or the "real_audio_v5_props_t" structure (differentiated by their "version" field; Big Endian byte order) as found in <a href="https://github.com/mbunkus/mkvtoolnix/blob/master/lib/librmff/librmff.h">librmff</a>.  </p>
+<h1 id="rfc.section.6.4.22">
+<a href="#rfc.section.6.4.22">6.4.22.</a> <a href="#arealatrc" id="arealatrc">A_REAL/ATRC</a>
+</h1>
+<p id="rfc.section.6.4.22.p.1">Codec ID: A_REAL/ATRC </p>
+<p id="rfc.section.6.4.22.p.2">Codec Name: Sony Atrac3 Codec </p>
+<p id="rfc.section.6.4.22.p.3">Initialisation: The <samp>Private Data</samp> contains either the "real_audio_v4_props_t" or the "real_audio_v5_props_t" structure (differentiated by their "version" field; Big Endian byte order) as found in <a href="https://github.com/mbunkus/mkvtoolnix/blob/master/lib/librmff/librmff.h">librmff</a>.  </p>
+<h1 id="rfc.section.6.4.23">
+<a href="#rfc.section.6.4.23">6.4.23.</a> <a href="#amsacm" id="amsacm">A_MS/ACM</a>
+</h1>
+<p id="rfc.section.6.4.23.p.1">Codec ID: A_MS/ACM </p>
+<p id="rfc.section.6.4.23.p.2">Codec Name: Microsoft(TM) Audio Codec Manager (ACM) </p>
+<p id="rfc.section.6.4.23.p.3">Description: The data are stored in little endian format (like on IA32 machines).  </p>
+<p id="rfc.section.6.4.23.p.4">Initialisation: The <samp>Private Data</samp> contains the ACM structure WAVEFORMATEX including the extra private bytes, as <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/multimed/mmstr_625u.asp">defined by Microsoft</a>.  </p>
+<h1 id="rfc.section.6.4.24">
+<a href="#rfc.section.6.4.24">6.4.24.</a> <a href="#aaacmpeg2main" id="aaacmpeg2main">A_AAC/MPEG2/MAIN</a>
+</h1>
+<p id="rfc.section.6.4.24.p.1">Codec ID: A_AAC/MPEG2/MAIN </p>
+<p id="rfc.section.6.4.24.p.2">Codec Name: MPEG2 Main Profile </p>
+<p id="rfc.section.6.4.24.p.3">Description: Channel number and sample rate have to be read from the corresponding audio element. Audio stream is stripped from ADTS headers and normal Matroska frame based muxing scheme is applied. AAC audio always uses wFormatTag 0xFF.  </p>
+<p id="rfc.section.6.4.24.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.25">
+<a href="#rfc.section.6.4.25">6.4.25.</a> <a href="#aaacmpeg2lc" id="aaacmpeg2lc">A_AAC/MPEG2/LC</a>
+</h1>
+<p id="rfc.section.6.4.25.p.1">Codec ID: A_AAC/MPEG2/LC </p>
+<p id="rfc.section.6.4.25.p.2">Codec Name: Low Complexity </p>
+<p id="rfc.section.6.4.25.p.3">Description: Channel number and sample rate have to be read from the corresponding audio element. Audio stream is stripped from ADTS headers and normal Matroska frame based muxing scheme is applied. AAC audio always uses wFormatTag 0xFF.  </p>
+<p id="rfc.section.6.4.25.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.26">
+<a href="#rfc.section.6.4.26">6.4.26.</a> <a href="#aaacmpeg2lcsbr" id="aaacmpeg2lcsbr">A_AAC/MPEG2/LC/SBR</a>
+</h1>
+<p id="rfc.section.6.4.26.p.1">Codec ID: A_AAC/MPEG2/LC/SBR </p>
+<p id="rfc.section.6.4.26.p.2">Codec Name: Low Complexity with Spectral Band Replication </p>
+<p id="rfc.section.6.4.26.p.3">Description: Channel number and sample rate have to be read from the corresponding audio element. Audio stream is stripped from ADTS headers and normal Matroska frame based muxing scheme is applied. AAC audio always uses wFormatTag 0xFF.  </p>
+<p id="rfc.section.6.4.26.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.27">
+<a href="#rfc.section.6.4.27">6.4.27.</a> <a href="#aaacmpeg2ssr" id="aaacmpeg2ssr">A_AAC/MPEG2/SSR</a>
+</h1>
+<p id="rfc.section.6.4.27.p.1">Codec ID: A_AAC/MPEG2/SSR </p>
+<p id="rfc.section.6.4.27.p.2">Codec Name: Scalable Sampling Rate </p>
+<p id="rfc.section.6.4.27.p.3">Description: Channel number and sample rate have to be read from the corresponding audio element. Audio stream is stripped from ADTS headers and normal Matroska frame based muxing scheme is applied. AAC audio always uses wFormatTag 0xFF.  </p>
+<p id="rfc.section.6.4.27.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.28">
+<a href="#rfc.section.6.4.28">6.4.28.</a> <a href="#aaacmpeg4main" id="aaacmpeg4main">A_AAC/MPEG4/MAIN</a>
+</h1>
+<p id="rfc.section.6.4.28.p.1">Codec ID: A_AAC/MPEG4/MAIN </p>
+<p id="rfc.section.6.4.28.p.2">Codec Name: MPEG4 Main Profile </p>
+<p id="rfc.section.6.4.28.p.3">Description: Channel number and sample rate have to be read from the corresponding audio element. Audio stream is stripped from ADTS headers and normal Matroska frame based muxing scheme is applied. AAC audio always uses wFormatTag 0xFF.  </p>
+<p id="rfc.section.6.4.28.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.29">
+<a href="#rfc.section.6.4.29">6.4.29.</a> <a href="#aaacmpeg4lc" id="aaacmpeg4lc">A_AAC/MPEG4/LC</a>
+</h1>
+<p id="rfc.section.6.4.29.p.1">Codec ID: A_AAC/MPEG4/LC </p>
+<p id="rfc.section.6.4.29.p.2">Codec Name: Low Complexity </p>
+<p id="rfc.section.6.4.29.p.3">Description: Channel number and sample rate have to be read from the corresponding audio element. Audio stream is stripped from ADTS headers and normal Matroska frame based muxing scheme is applied. AAC audio always uses wFormatTag 0xFF.  </p>
+<p id="rfc.section.6.4.29.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.30">
+<a href="#rfc.section.6.4.30">6.4.30.</a> <a href="#aaacmpeg4lcsbr" id="aaacmpeg4lcsbr">A_AAC/MPEG4/LC/SBR</a>
+</h1>
+<p id="rfc.section.6.4.30.p.1">Codec ID: A_AAC/MPEG4/LC/SBR </p>
+<p id="rfc.section.6.4.30.p.2">Codec Name: Low Complexity with Spectral Band Replication </p>
+<p id="rfc.section.6.4.30.p.3">Description: Channel number and sample rate have to be read from the corresponding audio element. Audio stream is stripped from ADTS headers and normal Matroska frame based muxing scheme is applied. AAC audio always uses wFormatTag 0xFF.  </p>
+<p id="rfc.section.6.4.30.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.31">
+<a href="#rfc.section.6.4.31">6.4.31.</a> <a href="#aaacmpeg4ssr" id="aaacmpeg4ssr">A_AAC/MPEG4/SSR</a>
+</h1>
+<p id="rfc.section.6.4.31.p.1">Codec ID: A_AAC/MPEG4/SSR </p>
+<p id="rfc.section.6.4.31.p.2">Codec Name: Scalable Sampling Rate </p>
+<p id="rfc.section.6.4.31.p.3">Description: Channel number and sample rate have to be read from the corresponding audio element. Audio stream is stripped from ADTS headers and normal Matroska frame based muxing scheme is applied. AAC audio always uses wFormatTag 0xFF.  </p>
+<p id="rfc.section.6.4.31.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.32">
+<a href="#rfc.section.6.4.32">6.4.32.</a> <a href="#aaacmpeg4ltp" id="aaacmpeg4ltp">A_AAC/MPEG4/LTP</a>
+</h1>
+<p id="rfc.section.6.4.32.p.1">Codec ID: A_AAC/MPEG4/LTP </p>
+<p id="rfc.section.6.4.32.p.2">Codec Name: Long Term Prediction </p>
+<p id="rfc.section.6.4.32.p.3">Description: Channel number and sample rate have to be read from the corresponding audio element. Audio stream is stripped from ADTS headers and normal Matroska frame based muxing scheme is applied. AAC audio always uses wFormatTag 0xFF.  </p>
+<p id="rfc.section.6.4.32.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.33">
+<a href="#rfc.section.6.4.33">6.4.33.</a> <a href="#aquicktime" id="aquicktime">A_QUICKTIME</a>
+</h1>
+<p id="rfc.section.6.4.33.p.1">Codec ID: A_QUICKTIME </p>
+<p id="rfc.section.6.4.33.p.2">Codec Name: Audio taken from QuickTime(TM) files </p>
+<p id="rfc.section.6.4.33.p.3">Description: Several codecs as stored in QuickTime, e.g. QDesign Music v1 or v2.  </p>
+<p id="rfc.section.6.4.33.p.4">Initialisation: The <samp>Private Data</samp> contains all additional data that is stored in the 'stsd' (sample description) atom in the QuickTime file <strong>after</strong> the mandatory sound descriptor structure (starting with the size and FourCC fields). For an explanation of the QuickTime file format read <a href="https://developer.apple.com/library/mac/documentation/QuickTime/QTFF/QTFFPreface/qtffPreface.html">QuickTime File Format Specification</a>.  </p>
+<h1 id="rfc.section.6.4.34">
+<a href="#rfc.section.6.4.34">6.4.34.</a> <a href="#aquicktimeqdmc" id="aquicktimeqdmc">A_QUICKTIME/QDMC</a>
+</h1>
+<p id="rfc.section.6.4.34.p.1">Codec ID: A_QUICKTIME/QDMC </p>
+<p id="rfc.section.6.4.34.p.2">Codec Name: QDesign Music </p>
+<p id="rfc.section.6.4.34.p.3">Description: </p>
+<p id="rfc.section.6.4.34.p.4">Initialisation: The <samp>Private Data</samp> contains all additional data that is stored in the 'stsd' (sample description) atom in the QuickTime file <strong>after</strong> the mandatory sound descriptor structure (starting with the size and FourCC fields). For an explanation of the QuickTime file format read <a href="https://developer.apple.com/library/mac/documentation/QuickTime/QTFF/QTFFPreface/qtffPreface.html">QuickTime File Format Specification</a>.  </p>
+<p id="rfc.section.6.4.34.p.5">Superseded By: A_QUICKTIME </p>
+<h1 id="rfc.section.6.4.35">
+<a href="#rfc.section.6.4.35">6.4.35.</a> <a href="#aquicktimeqdm2" id="aquicktimeqdm2">A_QUICKTIME/QDM2</a>
+</h1>
+<p id="rfc.section.6.4.35.p.1">Codec ID: A_QUICKTIME/QDM2 </p>
+<p id="rfc.section.6.4.35.p.2">Codec Name: QDesign Music v2 </p>
+<p id="rfc.section.6.4.35.p.3">Description: </p>
+<p id="rfc.section.6.4.35.p.4">Initialisation: The <samp>Private Data</samp> contains all additional data that is stored in the 'stsd' (sample description) atom in the QuickTime file <strong>after</strong> the mandatory sound descriptor structure (starting with the size and FourCC fields). For an explanation of the QuickTime file format read <a href="https://developer.apple.com/library/mac/documentation/QuickTime/QTFF/QTFFPreface/qtffPreface.html">QuickTime File Format Specification</a>.  </p>
+<p id="rfc.section.6.4.35.p.5">Superseded By: A_QUICKTIME </p>
+<h1 id="rfc.section.6.4.36">
+<a href="#rfc.section.6.4.36">6.4.36.</a> <a href="#atta1" id="atta1">A_TTA1</a>
+</h1>
+<p id="rfc.section.6.4.36.p.1">Codec ID: A_TTA1 </p>
+<p id="rfc.section.6.4.36.p.2">Codec Name: <a href="http://tausoft.org/">The True Audio</a> lossless audio compressor </p>
+<p id="rfc.section.6.4.36.p.3">Description: <a href="http://tausoft.org/wiki/True_Audio_Codec_Format">TTA format description</a> Each frame is kept intact, including the CRC32. The header and seektable are dropped. SamplingFrequency, Channels and BitDepth are used in the TrackEntry. wFormatTag = 0x77A1 </p>
+<p id="rfc.section.6.4.36.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.4.37">
+<a href="#rfc.section.6.4.37">6.4.37.</a> <a href="#awavpack4" id="awavpack4">A_WAVPACK4</a>
+</h1>
+<p id="rfc.section.6.4.37.p.1">Codec ID: A_WAVPACK4 </p>
+<p id="rfc.section.6.4.37.p.2">Codec Name: <a href="http://www.wavpack.com/">WavPack</a> lossless audio compressor </p>
+<p id="rfc.section.6.4.37.p.3">Description: The Wavpack packets consist of a stripped header followed by the frame data. For multi-track (&gt; 2 tracks) a frame consists of many packets. For hybrid files (lossy part + correction part), the correction part is stored in an additional block (level 1). For more details, check the <a href="wavpack.html">WavPack muxing description</a>.  </p>
+<p id="rfc.section.6.4.37.p.4">Initialisation: none </p>
+<h1 id="rfc.section.6.5">
+<a href="#rfc.section.6.5">6.5.</a> <a href="#subtitle-codec-mappings" id="subtitle-codec-mappings">Subtitle Codec Mappings</a>
+</h1>
+<h1 id="rfc.section.6.5.1">
+<a href="#rfc.section.6.5.1">6.5.1.</a> <a href="#stextutf8" id="stextutf8">S_TEXT/UTF8</a>
+</h1>
+<p id="rfc.section.6.5.1.p.1">Codec ID: S_TEXT/UTF8 </p>
+<p id="rfc.section.6.5.1.p.2">Codec Name: UTF-8 Plain Text </p>
+<p id="rfc.section.6.5.1.p.3">Description: Basic text subtitles. For more information, please look at <a href="#subtitles" class="xref">Section 7</a>.  </p>
+<h1 id="rfc.section.6.5.2">
+<a href="#rfc.section.6.5.2">6.5.2.</a> <a href="#stextssa" id="stextssa">S_TEXT/SSA</a>
+</h1>
+<p id="rfc.section.6.5.2.p.1">Codec ID: S_TEXT/SSA </p>
+<p id="rfc.section.6.5.2.p.2">Codec Name: Subtitles Format </p>
+<p id="rfc.section.6.5.2.p.3">Description: The [Script Info] and [V4 Styles] sections are stored in the codecprivate. Each event is stored in its own Block. For more information, see <a href="#subtitles" class="xref">Section 7</a>.  </p>
+<h1 id="rfc.section.6.5.3">
+<a href="#rfc.section.6.5.3">6.5.3.</a> <a href="#stextass" id="stextass">S_TEXT/ASS</a>
+</h1>
+<p id="rfc.section.6.5.3.p.1">Codec ID: S_TEXT/ASS </p>
+<p id="rfc.section.6.5.3.p.2">Codec Name: Advanced Subtitles Format </p>
+<p id="rfc.section.6.5.3.p.3">Description: The [Script Info] and [V4 Styles] sections are stored in the codecprivate. Each event is stored in its own Block. For more information, see <a href="#subtitles" class="xref">Section 7</a>.  </p>
+<h1 id="rfc.section.6.5.4">
+<a href="#rfc.section.6.5.4">6.5.4.</a> <a href="#stextusf" id="stextusf">S_TEXT/USF</a>
+</h1>
+<p id="rfc.section.6.5.4.p.1">Codec ID: S_TEXT/USF </p>
+<p id="rfc.section.6.5.4.p.2">Codec Name: Universal Subtitle Format </p>
+<p id="rfc.section.6.5.4.p.3">Description: This is mostly defined, but not typed out yet. It will first be available on the USF specification <a href="#subtitles" class="xref">Section 7</a>.  </p>
+<h1 id="rfc.section.6.5.5">
+<a href="#rfc.section.6.5.5">6.5.5.</a> <a href="#stextwebvtt" id="stextwebvtt">S_TEXT/WEBVTT</a>
+</h1>
+<p id="rfc.section.6.5.5.p.1">Codec ID: S_TEXT/WEBVTT </p>
+<p id="rfc.section.6.5.5.p.2">Codec Name: Web Video Text Tracks Format (WebVTT) </p>
+<p id="rfc.section.6.5.5.p.3">Description: Advanced text subtitles. For more information, see <a href="#subtitles" class="xref">Section 7</a>.  </p>
+<h1 id="rfc.section.6.5.6">
+<a href="#rfc.section.6.5.6">6.5.6.</a> <a href="#simagebmp" id="simagebmp">S_IMAGE/BMP</a>
+</h1>
+<p id="rfc.section.6.5.6.p.1">Codec ID: S_IMAGE/BMP </p>
+<p id="rfc.section.6.5.6.p.2">Codec Name: Bitmap </p>
+<p id="rfc.section.6.5.6.p.3">Description: Basic image based subtitle format; The subtitles are stored as images, like in the DVD. The timestamp in the block header of Matroska indicates the start display time, the duration is set with the Duration element. The full data for the subtitle bitmap is stored in the Block's data section.  </p>
+<h1 id="rfc.section.6.5.7">
+<a href="#rfc.section.6.5.7">6.5.7.</a> <a href="#sdvbsub" id="sdvbsub">S_DVBSUB</a>
+</h1>
+<p id="rfc.section.6.5.7.p.1">Codec ID: S_DVBSUB </p>
+<p id="rfc.section.6.5.7.p.2">Codec Name: Digital Video Broadcasting (DVB) subtitles </p>
+<p id="rfc.section.6.5.7.p.3">Description: This is the graphical subtitle format used in the Digital Video Broadcasting standard. For more information, see <a href="#subtitles" class="xref">Section 7</a>.  </p>
+<h1 id="rfc.section.6.5.8">
+<a href="#rfc.section.6.5.8">6.5.8.</a> <a href="#svobsub" id="svobsub">S_VOBSUB</a>
+</h1>
+<p id="rfc.section.6.5.8.p.1">Codec ID: S_VOBSUB </p>
+<p id="rfc.section.6.5.8.p.2">Codec Name: VobSub subtitles </p>
+<p id="rfc.section.6.5.8.p.3">Description: The same subtitle format used on DVDs. Supported is only format version 7 and newer. VobSubs consist of two files, the .idx containing information, and the .sub, containing the actual data. The .idx file is stripped of all empty lines, of all comments and of lines beginning with <samp>alt:</samp> or <samp>langidx:</samp>. The line beginning with <samp>id:</samp> SHOULD be transformed into the appropriate Matroska track language element and is discarded. All remaining lines but the ones containing timestamps and file positions are put into the <samp>CodecPrivate</samp> element.  </p>
+<p id="rfc.section.6.5.8.p.4">For each line containing the timestamp and file position data is read from the appropriate position in the .sub file. This data consists of a MPEG program stream which in turn contains SPU packets. The MPEG program stream data is discarded, and each SPU packet is put into one Matroska frame.  </p>
+<h1 id="rfc.section.6.5.9">
+<a href="#rfc.section.6.5.9">6.5.9.</a> <a href="#shdmvpgs" id="shdmvpgs">S_HDMV/PGS</a>
+</h1>
+<p id="rfc.section.6.5.9.p.1">Codec ID: S_HDMV/PGS </p>
+<p id="rfc.section.6.5.9.p.2">Codec Name: HDMV presentation graphics subtitles (PGS) </p>
+<p id="rfc.section.6.5.9.p.3">Description: This is the graphical subtitle format used on Blu-rays. For more information, see <a href="#subtitles" class="xref">Section 7</a>.  </p>
+<h1 id="rfc.section.6.5.10">
+<a href="#rfc.section.6.5.10">6.5.10.</a> <a href="#shdmvtextst" id="shdmvtextst">S_HDMV/TEXTST</a>
+</h1>
+<p id="rfc.section.6.5.10.p.1">Codec ID: S_HDMV/TEXTST </p>
+<p id="rfc.section.6.5.10.p.2">Codec Name: HDMV text subtitles </p>
+<p id="rfc.section.6.5.10.p.3">Description: This is the textual subtitle format used on Blu-rays. For more information, see <a href="#subtitles" class="xref">Section 7</a>.  </p>
+<h1 id="rfc.section.6.5.11">
+<a href="#rfc.section.6.5.11">6.5.11.</a> <a href="#skate" id="skate">S_KATE</a>
+</h1>
+<p id="rfc.section.6.5.11.p.1">Codec ID: S_KATE </p>
+<p id="rfc.section.6.5.11.p.2">Codec Name: Karaoke And Text Encapsulation </p>
+<p id="rfc.section.6.5.11.p.3">Description: A subtitle format developed for ogg. The mapping for Matroska is described on the <a href="http://wiki.xiph.org/index.php/OggKate#Matroska_mapping">Xiph wiki</a>. As for Theora and Vorbis, Kate headers are stored in the private data as xiph-laced packets.  </p>
+<h1 id="rfc.section.6.6">
+<a href="#rfc.section.6.6">6.6.</a> <a href="#button-codec-mappings" id="button-codec-mappings">Button Codec Mappings</a>
+</h1>
+<h1 id="rfc.section.6.6.1">
+<a href="#rfc.section.6.6.1">6.6.1.</a> <a href="#bvobbtn" id="bvobbtn">B_VOBBTN</a>
+</h1>
+<p id="rfc.section.6.6.1.p.1">Codec ID: B_VOBBTN </p>
+<p id="rfc.section.6.6.1.p.2">Codec Name: VobBtn Buttons </p>
+<p id="rfc.section.6.6.1.p.3">Description: Based on <a href="http://dvd.sourceforge.net/dvdinfo/pci_pkt.html">MPEG/VOB PCI packets</a>. The file contains a header consisting of the string "butonDVD" followed by the width and height in pixels (16 bits integer each) and 4 reserved bytes. The rest is full <a href="http://dvd.sourceforge.net/dvdinfo/pci_pkt.html">PCI packets</a>.  </p>
+<h1 id="rfc.section.7">
+<a href="#rfc.section.7">7.</a> <a href="#subtitles" id="subtitles">Subtitles</a>
+</h1>
+<p id="rfc.section.7.p.1">Because Matroska is a general container format, we try to avoid specifying the formats to store in it. This type of work is really outside of the scope of a container-only format. However, because the use of subtitles in A/V containers has been so limited (with the exception of DVD) we are taking the time to specify how to store some of the more common subtitle formats in Matroska. This is being done to help facilitate their growth. Otherwise, incompatibilities could prevent the standardization and use of subtitle storage.  </p>
+<p id="rfc.section.7.p.2">This page is not meant to be a complete listing of all subtitle formats that will be used in Matroska, it is only meant to be a guide for the more common, current formats. It is possible that we will add future formats to this page as they are created, but it is not likely as any other new subtitle format designer would likely have their own specifications. Any specification listed here SHOULD be strictly adhered to or it SHOULD NOT use the corresponding Codec ID.  </p>
+<p id="rfc.section.7.p.3">Here is a list of pointers for storing subtitles in Matroska: </p>
+<p></p>
+
+<ul>
+<li>Any Matroska file containing only subtitles SHOULD use the extension ".mks".</li>
+<li>As a general rule of thumb for all codecs, information that is global to an entire stream SHOULD be stored in the CodecPrivate element.</li>
+<li>Start and stop timecodes that are used in a timecodes native storage format SHOULD be removed when being placed in Matroska as they could interfere if the file is edited afterwards. Instead, the Blocks timecode and Duration SHOULD be used to say when the timecode is displayed.</li>
+<li>Because a "subtitle" stream is actually just an overlay stream, anything with a transparency layer could be use, including video.</li>
+</ul>
+
+<p> </p>
+<h1 id="rfc.section.7.1">
+<a href="#rfc.section.7.1">7.1.</a> <a href="#images-subtitles" id="images-subtitles">Images Subtitles</a>
+</h1>
+<p id="rfc.section.7.1.p.1">The first image format that is a goal to import into Matroska is the VobSub subtitle format. This subtitle type is generated by exporting the subtitles from a DVD.  </p>
+<p id="rfc.section.7.1.p.2">The requirement for muxing VobSub into Matroska is v7 subtitles (see first line of the .IDX file). If the version is smaller, you must remux them using the SubResync utility from VobSub 2.23 (or MPC) into v7 format. Generally any newly created subs will be in v7 format.  </p>
+<p id="rfc.section.7.1.p.3">The .IFO file will not be used at all.  </p>
+<p id="rfc.section.7.1.p.4">If there is more than one subtitle stream in the VobSub set, each stream will need to be separated into separate tracks for storage in Matroska. E.g. the VobSub file contains streams for both English and German subtitles. Then the resulting Matroska file SHOULD contain two tracks. That way the language information can be 'dropped' and mapped to Matroska's language tags.  </p>
+<p id="rfc.section.7.1.p.5">The .IDX file is reformatted (see below) and placed in the CodecPrivate.  </p>
+<p id="rfc.section.7.1.p.6">Each .BMP will be stored in its own Block. The Timestamp with be stored in the Blocks Timecode and the duration will be stored in the Default Duration.  </p>
+<p id="rfc.section.7.1.p.7">Here is an example .IDX file: </p>
+<pre>
+  # VobSub index file, v7 (do not modify this line!)
+  #
+  # To repair desynchronization, you can insert gaps this way:
+  # (it usually happens after vob id changes)
+  #
+  # delay: [sign]hh:mm:ss:ms
+  #
+  # Where:
+  # [sign]: +, - (optional)
+  # hh: hours (0 &lt;= hh)
+  # mm/ss: minutes/seconds (0 &lt;= mm/ss &lt;= 59)
+  # ms: milliseconds (0 &lt;= ms &lt;= 999)
+  #
+  # Note: You can't position a sub before the previous with a negative
+  # value.
+  #
+  # You can also modify timestamps or delete a few subs you don't like.
+  # Just make sure they stay in increasing order.
+
+  # Settings
+
+  # Original frame size
+  size: 720x480
+
+  # Origin, relative to the upper-left corner, can be overloaded by
+  # alignment
+  org: 0, 0
+
+  # Image scaling (hor,ver), origin is at the upper-left corner or at
+  # the alignment coord (x, y)
+  scale: 100%, 100%
+
+  # Alpha blending
+  alpha: 100%
+
+  # Smoothing for very blocky images (use OLD for no filtering)
+  smooth: OFF
+
+  # In millisecs
+  fadein/out: 50, 50
+
+  # Force subtitle placement relative to (org.x, org.y)
+  align: OFF at LEFT TOP
+
+  # For correcting non-progressive desync. (in millisecs or hh:mm:ss:ms)
+  # Note: Not effective in DirectVobSub, use "delay: ... " instead.
+  time offset: 0
+
+  # ON: displays only forced subtitles, OFF: shows everything
+  forced subs: OFF
+
+  # The original palette of the DVD
+  palette: 000000, 7e7e7e, fbff8b, cb86f1, 7f74b8, e23f06, 0a48ea, \
+  b3d65a, 6b92f1, 87f087, c02081, f8d0f4, e3c411, 382201, e8840b, fdfdfd
+
+  # Custom colors (transp idxs and the four colors)
+  custom colors: OFF, tridx: 0000, colors: 000000, 000000, 000000, \
+  000000
+
+  # Language index in use
+  langidx: 0
+
+  # English
+  id: en, index: 0
+  # Decomment next line to activate alternative name in DirectVobSub /
+  # Windows Media Player 6.x
+  # alt: English
+  # Vob/Cell ID: 1, 1 (PTS: 0)
+  timestamp: 00:00:01:101, filepos: 000000000
+  timestamp: 00:00:08:708, filepos: 000001000
+</pre>
+<p id="rfc.section.7.1.p.8">First, lines beginning with "#" are removed. These are comments to make text file editing easier, and as this is not a text file, they aren't needed.  </p>
+<p id="rfc.section.7.1.p.9">Next remove the "langidx" and "id" lines. These are used to differentiate the subtitle streams and define the language. As the streams will be stored separately anyway, there is no need to differentiate them here. Also, the language setting will be stored in the Matroska tags, so there is no need to store it here.  </p>
+<p id="rfc.section.7.1.p.10">Finally, the "timestamp" will be used to set the Block's timecode. Once it is set there, there is no need for it to be stored here. Also, as it may interfere if the file is edited, it SHOULD NOT be stored here.  </p>
+<p id="rfc.section.7.1.p.11">Once all of these items are removed, the data to store in the CodecPrivate SHOULD look like this: </p>
+<pre>
+  size: 720x480
+  org: 0, 0
+  scale: 100%, 100%
+  alpha: 100%
+  smooth: OFF
+  fadein/out: 50, 50
+  align: OFF at LEFT TOP
+  time offset: 0
+  forced subs: OFF
+  palette: 000000, 7e7e7e, fbff8b, cb86f1, 7f74b8, e23f06, 0a48ea, \
+  b3d65a, 6b92f1, 87f087, c02081, f8d0f4, e3c411, 382201, e8840b, fdfdfd
+  custom colors: OFF, tridx: 0000, colors: 000000, 000000, 000000, \
+  000000
+</pre>
+<p id="rfc.section.7.1.p.12">There SHOULD also be two Blocks containing one image each with the timecodes "00:00:01:101" and "00:00:08:708".  </p>
+<h1 id="rfc.section.7.2">
+<a href="#rfc.section.7.2">7.2.</a> <a href="#srt-subtitles" id="srt-subtitles">SRT Subtitles</a>
+</h1>
+<p id="rfc.section.7.2.p.1">SRT is perhaps the most basic of all subtitle formats.  </p>
+<p id="rfc.section.7.2.p.2">It consists of four parts, all in text..  </p>
+<p id="rfc.section.7.2.p.3">1. A number indicating which subtitle it is in the sequence.  2. The time that the subtitle appears on the screen, and then disappears.  3. The subtitle itself.  4. A blank line indicating the start of a new subtitle.  </p>
+<p id="rfc.section.7.2.p.4">When placing SRT in Matroska, part 3 is converted to UTF-8 (S_TEXT/UTF8) and placed in the data portion of the Block. Part 2 is used to set the timecode of the Block, and BlockDuration element. Nothing else is used.  </p>
+<p id="rfc.section.7.2.p.5">Here is an example SRT file: </p>
+<pre>
+1
+00:02:17,440 --&gt; 00:02:20,375
+Senator, we're making
+our final approach into Coruscant.
+
+2
+00:02:20,476 --&gt; 00:02:22,501
+Very good, Lieutenant.
+</pre>
+<p id="rfc.section.7.2.p.6">In this example, the text "Senator, we're making our final approach into Coruscant." would be converted into UTF-8 and placed in the Block. The timecode of the block would be set to "00:02:17,440". And the BlockDuration element would be set to "00:00:02,935".  </p>
+<p id="rfc.section.7.2.p.7">The same is repeated for the next subtitle.  </p>
+<p id="rfc.section.7.2.p.8">Because there are no general settings for SRT, the CodecPrivate is left blank.  </p>
+<h1 id="rfc.section.7.3">
+<a href="#rfc.section.7.3">7.3.</a> <a href="#ssaass-subtitles" id="ssaass-subtitles">SSA/ASS Subtitles</a>
+</h1>
+<p id="rfc.section.7.3.p.1">SSA stands for Sub Station Alpha. It's the file format used by the popular subtitle editor, <a href="http://wiki.multimedia.cx/index.php?title=SubStation_Alpha">SubStation Alpha</a>. This format is widely used by fansubbers.  </p>
+<p id="rfc.section.7.3.p.2">It allows you to do some advanced display features, like positioning, karaoke, style managements...  </p>
+<p id="rfc.section.7.3.p.3">For detailed information on SSA/ASS, see the <a href="http://moodub.free.fr/video/ass-specs.doc">SSA specs</a>. It includes an SSA specs description and the advanced features added by ASS format (standing for Advanced SSA). Because SSA and ASS are so similar, they are treated the same here.  </p>
+<p id="rfc.section.7.3.p.4">Like SRT, this format is text based with a particular syntax.  </p>
+<p id="rfc.section.7.3.p.5">A file consists of 4 or 5 parts, declared ala INI file (but it's not an INI !) </p>
+<p id="rfc.section.7.3.p.6">The first, "[Script Info]" contains some information about the subtitle file, such as it's title, who created it, type of script and a very important one : "PlayResY". Be careful of this value, everything in your script (font size, positioning) is scaled by it. Sub Station Alpha uses your desktops Y resolution to write this value, so if a friend with a large monitor and a high screen resolution gives you an edited script, you can mess everything up by saving the script in SSA with your low-cost monitor.  </p>
+<p id="rfc.section.7.3.p.7">The second, "[V4 Styles]", is a list of style definitions. A style describe how will look a text on the screen. It defines font, font size, primary/.../outile colour, position, alignment, etc.  </p>
+<p id="rfc.section.7.3.p.8">For example this : </p>
+<pre>
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, TertiaryColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, AlphaLevel, Encoding
+Style: Wolf main,Wolf_Rain,56,15724527,15724527,15724527,4144959,0,0,1,1,2,2,5,5,30,0,0
+</pre>
+<p id="rfc.section.7.3.p.9">The third, "[Events]", is the list of text you want to display at the right timing. You can specify some attribute here. Like the style to use for this event (MUST be defined in the list), the position of the text (Left, Right, Vertical Margin), an effect. Name is mostly used by translator to know who said this sentence. Timing is in h:mm:ss.cc (centisec).  </p>
+<pre>
+Format: Marked, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: Marked=0,0:02:40.65,0:02:41.79,Wolf main,Cher,0000,0000,0000,,Et les enregistrements de ses ondes delta ?
+Dialogue: Marked=0,0:02:42.42,0:02:44.15,Wolf main,autre,0000,0000,0000,,Toujours rien.
+</pre>
+<p id="rfc.section.7.3.p.10">"[Pictures]" or "[Fonts]" part can be found in some SSA file, they contains UUE-encoded pictures/font but those features are only used by Sub Station Alpha, i.e. no filter (Vobsub/Avery Lee Subtiler filter) use them.  </p>
+<p id="rfc.section.7.3.p.11">Now, how are they stored in Matroska ? </p>
+<p></p>
+
+<ul><li>All text is converted to UTF-8*   All the headers are stored in CodecPrivate ( Script Info and the Styles list)*   Start &amp; End field are used to set TimeStamp and the BlockDuration element. the data stored is :*   Events are stored in the Block in this order: ReadOrder, Layer, Style, Name, MarginL, MarginR, MarginV, Effect, Text (Layer comes from ASS specs ... it's empty for SSA.) "ReadOrder field is needed for the decoder to be able to reorder the streamed samples as they were placed originally in the file."</li></ul>
+
+<p> </p>
+<p id="rfc.section.7.3.p.13">Here is an example of an SSA file.  </p>
+<pre>
+[Script Info]
+; This is a Sub Station Alpha v4 script.
+; For Sub Station Alpha info and downloads,
+; go to [http://www.eswat.demon.co.uk/](http://www.eswat.demon.co.uk/)
+; or email [kotus@eswat.demon.co.uk](mailto:kotus@eswat.demon.co.uk)
+Title: Wolf's rain 2
+Original Script: Anime-spirit Ishin-francais
+Original Translation: Coolman
+Original Editing: Spikewolfwood
+Original Timing: Lord_alucard
+Original Script Checking: Spikewolfwood
+ScriptType: v4.00
+Collisions: Normal
+PlayResY: 1024
+PlayDepth: 0
+Wav: 0, 128697,D:\Alex\Anime\- Fansub -\- TAFF -\Wolf's Rain\WR_-_02_Wav.wav
+Wav: 0, 120692,H:\team truc\WR_-_02.wav
+Wav: 0, 116504,E:\sub\wolf's_rain\WOLF'S RAIN 02.wav
+LastWav: 3
+Timer: 100,0000
+
+[V4 Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, TertiaryColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, AlphaLevel, Encoding
+Style: Default,Arial,20,65535,65535,65535,-2147483640,-1,0,1,3,0,2,30,30,30,0,0
+Style: Titre_episode,Akbar,140,15724527,65535,65535,986895,-1,0,1,1,0,3,30,30,30,0,0
+Style: Wolf main,Wolf_Rain,56,15724527,15724527,15724527,4144959,0,0,1,1,2,2,5,5,30,0,0
+
+[Events]
+Format: Marked, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: Marked=0,0:02:40.65,0:02:41.79,Wolf main,Cher,0000,0000,0000,,Et les enregistrements de ses ondes delta ?
+Dialogue: Marked=0,0:02:42.42,0:02:44.15,Wolf main,autre,0000,0000,0000,,Toujours rien.
+</pre>
+<p id="rfc.section.7.3.p.14">Here is what would be placed into the CodecPrivate element.  </p>
+<pre>
+[Script Info]
+; This is a Sub Station Alpha v4 script.
+; For Sub Station Alpha info and downloads,
+; go to [http://www.eswat.demon.co.uk/](http://www.eswat.demon.co.uk/)
+; or email [kotus@eswat.demon.co.uk](mailto:kotus@eswat.demon.co.uk)
+Title: Wolf's rain 2
+Original Script: Anime-spirit Ishin-francais
+Original Translation: Coolman
+Original Editing: Spikewolfwood
+Original Timing: Lord_alucard
+Original Script Checking: Spikewolfwood
+ScriptType: v4.00
+Collisions: Normal
+PlayResY: 1024
+PlayDepth: 0
+Wav: 0, 128697,D:\Alex\Anime\- Fansub -\- TAFF -\Wolf's Rain\WR_-_02_Wav.wav
+Wav: 0, 120692,H:\team truc\WR_-_02.wav
+Wav: 0, 116504,E:\sub\wolf's_rain\WOLF'S RAIN 02.wav
+LastWav: 3
+Timer: 100,0000
+
+[V4 Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, TertiaryColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, AlphaLevel, Encoding
+Style: Default,Arial,20,65535,65535,65535,-2147483640,-1,0,1,3,0,2,30,30,30,0,0
+Style: Titre_episode,Akbar,140,15724527,65535,65535,986895,-1,0,1,1,0,3,30,30,30,0,0
+Style: Wolf main,Wolf_Rain,56,15724527,15724527,15724527,4144959,0,0,1,1,2,2,5,5,30,0,0
+</pre>
+<p id="rfc.section.7.3.p.15">And here are the two blocks that would be generated.  </p>
+<p id="rfc.section.7.3.p.16">Block's timecode: 00:02:40.650 BlockDuration: 00:00:01.140 </p>
+<pre>
+1,,Wolf main,Cher,0000,0000,0000,,Et les enregistrements de ses ondes delta ?
+</pre>
+<p id="rfc.section.7.3.p.17">Block's timecode: 00:02:42.420 BlockDuration: 00:00:01.730 </p>
+<pre>
+2,,Wolf main,autre,0000,0000,0000,,Toujours rien.
+</pre>
+<h1 id="rfc.section.7.4">
+<a href="#rfc.section.7.4">7.4.</a> <a href="#usf-subtitles" id="usf-subtitles">USF Subtitles</a>
+</h1>
+<p id="rfc.section.7.4.p.1">Under construction </p>
+<h1 id="rfc.section.7.5">
+<a href="#rfc.section.7.5">7.5.</a> <a href="#webvtt" id="webvtt">WebVTT</a>
+</h1>
+<p id="rfc.section.7.5.p.1">The "Web Video Text Tracks Format" (short: WebVTT) is developed by the <a href="https://www.w3.org/">World Wide Web Consortium (W3C)</a>. Its specifications are <a href="https://w3c.github.io/webvtt/">freely available</a>.  </p>
+<p id="rfc.section.7.5.p.2">The guiding principles for the storage of WebVTT in Matroska are: </p>
+<p></p>
+
+<ul>
+<li>Consistency: store data in a similar way to other subtitle codecs</li>
+<li>Simplicity: making decoding and remuxing as easy as possible for existing infrastructures</li>
+<li>Completeness: keeping as much data as possible from the original WebVTT file</li>
+</ul>
+
+<p> </p>
+<h1 id="rfc.section.7.5.1">
+<a href="#rfc.section.7.5.1">7.5.1.</a> <a href="#storage-of-webvtt-in-matroska" id="storage-of-webvtt-in-matroska">Storage of WebVTT in Matroska</a>
+</h1>
+<h1 id="rfc.section.7.5.1.1">
+<a href="#rfc.section.7.5.1.1">7.5.1.1.</a> <a href="#codecid-codec-identification" id="codecid-codec-identification">CodecID: codec identification</a>
+</h1>
+<p id="rfc.section.7.5.1.1.p.1">The CodecID to use is <samp>S_TEXT/WEBVTT</samp>.  </p>
+<h1 id="rfc.section.7.5.1.2">
+<a href="#rfc.section.7.5.1.2">7.5.1.2.</a> <a href="#codecprivate-storage-of-global-webvtt-blocks" id="codecprivate-storage-of-global-webvtt-blocks">CodecPrivate: storage of global WebVTT blocks</a>
+</h1>
+<p id="rfc.section.7.5.1.2.p.1">This element contains all global blocks before the first subtitle entry. This starts at the "<samp>WEBVTT</samp>" file identification marker but excludes the optional byte order mark.  </p>
+<h1 id="rfc.section.7.5.1.3">
+<a href="#rfc.section.7.5.1.3">7.5.1.3.</a> <a href="#storage-of-nonglobal-webvtt-blocks" id="storage-of-nonglobal-webvtt-blocks">Storage of non-global WebVTT blocks</a>
+</h1>
+<p id="rfc.section.7.5.1.3.p.1">Non-global WebVTT blocks (e.g. "NOTE") before a WebVTT Cue Text are stored in Matroska's BlockAddition element together with the Matroska Block containing the WebVTT Cue Text these blocks precede (see below for the actual format).  </p>
+<h1 id="rfc.section.7.5.1.4">
+<a href="#rfc.section.7.5.1.4">7.5.1.4.</a> <a href="#storage-of-cues-in-matroska-blocks" id="storage-of-cues-in-matroska-blocks">Storage of Cues in Matroska blocks</a>
+</h1>
+<p id="rfc.section.7.5.1.4.p.1">Each WebVTT Cue Text is stored directly in the Matroska Block.  </p>
+<p id="rfc.section.7.5.1.4.p.2">A muxer MUST change all WebVTT Cue Timestamps present within the Cue Text to be relative to the Matroska Block's timestamp.  </p>
+<p id="rfc.section.7.5.1.4.p.3">The Cue's start timestamp is used as the Matroska Block's timestamp.  </p>
+<p id="rfc.section.7.5.1.4.p.4">The difference between the Cue's end timestamp and its start timestamp is used as the Matroska Block's duration.  </p>
+<h1 id="rfc.section.7.5.1.5">
+<a href="#rfc.section.7.5.1.5">7.5.1.5.</a> <a href="#blockadditions-storing-nonglobal-webvtt-blocks-cue-settings-lists-and-cue-identifiers" id="blockadditions-storing-nonglobal-webvtt-blocks-cue-settings-lists-and-cue-identifiers">BlockAdditions: storing non-global WebVTT blocks, Cue Settings Lists and Cue identifiers</a>
+</h1>
+<p id="rfc.section.7.5.1.5.p.1">Each Matroska Block may be accompanied by one BlockAdditions element. Its format is as follows: </p>
+<p></p>
+
+<ol>
+<li>The first line contains the WebVTT Cue Text's optional Cue Settings List followed by one line feed character (U+0x000a). The Cue Settings List may be empty in which case the line consists of the line feed character only.</li>
+<li>The second line contains the WebVTT Cue Text's optional Cue Identifier followed by one line feed character (U+0x000a). The line may be empty indicating that there was no Cue Identifier in the source file in which case the line consists of the line feed character only.</li>
+<li>The third and all following lines contain all WebVTT Comment Blocks that precede the current WebVTT Cue Block. These may be absent.</li>
+</ol>
+
+<p> </p>
+<p id="rfc.section.7.5.1.5.p.3">If there is no Matroska BlockAddition element stored together with the Matroska Block then all three components (Cue Settings List, Cue Identifier, Cue Comments) MUST be assumed to be absent.  </p>
+<h1 id="rfc.section.7.5.2">
+<a href="#rfc.section.7.5.2">7.5.2.</a> <a href="#examples-of-transformation" id="examples-of-transformation">Examples of transformation</a>
+</h1>
+<p id="rfc.section.7.5.2.p.1">Here's an example how a WebVTT is transformed.  </p>
+<h1 id="rfc.section.7.5.2.1">
+<a href="#rfc.section.7.5.2.1">7.5.2.1.</a> <a href="#example-webvtt-file" id="example-webvtt-file">Example WebVTT file</a>
+</h1>
+<p id="rfc.section.7.5.2.1.p.1">Let's take the following example file: </p>
+<pre>
+WEBVTT with text after the signature
+
+STYLE
+::cue {
+  background-image: linear-gradient(to bottom, dimgray, lightgray);
+  color: papayawhip;
+}
+/* Style blocks cannot use blank lines nor "dash dash greater than" */
+
+NOTE comment blocks can be used between style blocks.
+
+STYLE
+::cue(b) {
+  color: peachpuff;
+}
+
+REGION
+id:bill
+width:40%
+lines:3
+regionanchor:0%,100%
+viewportanchor:10%,90%
+scroll:up
+
+NOTE
+Notes always span a whole block and can cover multiple
+lines. Like this one.
+An empty line ends the block.
+
+hello
+00:00:00.000 --&gt; 00:00:10.000
+Example entry 1: Hello &lt;b&gt;world&lt;/b&gt;.
+
+NOTE style blocks cannot appear after the first cue.
+
+00:00:25.000 --&gt; 00:00:35.000
+Example entry 2: Another entry.
+This one has multiple lines.
+
+00:01:03.000 --&gt; 00:01:06.500 position:90% align:right size:35%
+Example entry 3: That stuff to the right of the timestamps are cue settings.
+
+00:03:10.000 --&gt; 00:03:20.000
+Example entry 4: Entries can even include timestamps.
+For example:&lt;00:03:15.000&gt;This becomes visible five seconds
+after the first part.
+</pre>
+<h1 id="rfc.section.7.5.2.2">
+<a href="#rfc.section.7.5.2.2">7.5.2.2.</a> <a href="#codecprivate" id="codecprivate">CodecPrivate</a>
+</h1>
+<p id="rfc.section.7.5.2.2.p.1">The resulting CodecPrivate element will look like this: </p>
+<pre>
+WEBVTT with text after the signature
+
+STYLE
+::cue {
+  background-image: linear-gradient(to bottom, dimgray, lightgray);
+  color: papayawhip;
+}
+/* Style blocks cannot use blank lines nor "dash dash greater than" */
+
+NOTE comment blocks can be used between style blocks.
+
+STYLE
+::cue(b) {
+  color: peachpuff;
+}
+
+REGION
+id:bill
+width:40%
+lines:3
+regionanchor:0%,100%
+viewportanchor:10%,90%
+scroll:up
+
+NOTE
+Notes always span a whole block and can cover multiple
+lines. Like this one.
+An empty line ends the block.
+</pre>
+<h1 id="rfc.section.7.5.2.3">
+<a href="#rfc.section.7.5.2.3">7.5.2.3.</a> <a href="#storage-of-cue-1" id="storage-of-cue-1">Storage of Cue 1</a>
+</h1>
+<p id="rfc.section.7.5.2.3.p.1">Example Cue 1: timestamp 00:00:00.000, duration 00:00:10.000, Block's content: </p>
+<pre>
+Example entry 1: Hello &lt;b&gt;world&lt;/b&gt;.
+</pre>
+<p id="rfc.section.7.5.2.3.p.2">BlockAddition's content starts with one empty line as there's no Cue Settings List: </p>
+<pre>
+
+hello
+</pre>
+<h1 id="rfc.section.7.5.2.4">
+<a href="#rfc.section.7.5.2.4">7.5.2.4.</a> <a href="#storage-of-cue-2" id="storage-of-cue-2">Storage of Cue 2</a>
+</h1>
+<p id="rfc.section.7.5.2.4.p.1">Example Cue 2: timestamp 00:00:25.000, duration 00:00:10.000, Block's content: </p>
+<pre>
+Example entry 2: Another entry.
+This one has multiple lines.
+</pre>
+<p id="rfc.section.7.5.2.4.p.2">BlockAddition's content starts with two empty lines as there's neither a Cue Settings List nor a Cue Identifier: </p>
+<pre>
+
+NOTE style blocks cannot appear after the first cue.
+</pre>
+<h1 id="rfc.section.7.5.2.5">
+<a href="#rfc.section.7.5.2.5">7.5.2.5.</a> <a href="#storage-of-cue-3" id="storage-of-cue-3">Storage of Cue 3</a>
+</h1>
+<p id="rfc.section.7.5.2.5.p.1">Example Cue 3: timestamp 00:01:03.000, duration 00:00:03.500, Block's content: </p>
+<pre>
+Example entry 3: That stuff to the right of the timestamps are cue settings.
+</pre>
+<p id="rfc.section.7.5.2.5.p.2">BlockAddition's content ends with an empty line as there's no Cue Identifier and there were no WebVTT Comment blocks: </p>
+<pre>
+position:90% align:right size:35%
+
+</pre>
+<h1 id="rfc.section.7.5.2.6">
+<a href="#rfc.section.7.5.2.6">7.5.2.6.</a> <a href="#storage-of-cue-4" id="storage-of-cue-4">Storage of Cue 4</a>
+</h1>
+<p id="rfc.section.7.5.2.6.p.1">Example Cue 4: timestamp 00:03:10.000, duration 00:00:10.000, Block's content: </p>
+<p id="rfc.section.7.5.2.6.p.2">Example entry 4: Entries can even include timestamps. For example:<span>&lt;</span><a href="00:00:05.000">00:00:05.000</a><span>&gt;</span>This becomes visible five seconds after the first part.  </p>
+<p id="rfc.section.7.5.2.6.p.3">This Block does not need a BlockAddition as the Cue did not contain an Identifier, nor a Settings List, and it wasn't preceded by Comment blocks.  </p>
+<h1 id="rfc.section.7.5.3">
+<a href="#rfc.section.7.5.3">7.5.3.</a> <a href="#storage-of-webvtt-in-matroska-vs-webm" id="storage-of-webvtt-in-matroska-vs-webm">Storage of WebVTT in Matroska vs. WebM</a>
+</h1>
+<p id="rfc.section.7.5.3.p.1">Note: the storage of WebVTT in Matroska is not the same as the design document for storage of WebVTT in WebM. There are several reasons for this including but not limited to: the WebM document is old (from February 2012) and was based on an earlier draft of WebVTT and ignores several parts that were added to WebVTT later; WebM does still <a href="http://www.webmproject.org/docs/container/">not support subtitles at all</a>; the proposal suggests splitting the information across multiple tracks making demuxer's and remuxer's life very difficult.  </p>
+<h1 id="rfc.section.7.6">
+<a href="#rfc.section.7.6">7.6.</a> <a href="#hdmv-presentation-graphics-subtitles" id="hdmv-presentation-graphics-subtitles">HDMV presentation graphics subtitles</a>
+</h1>
+<p id="rfc.section.7.6.p.1">The specifications for the HDMV presentation graphics subtitle format (short: HDMV PGS) can be found in the document "Blu-ray Disc Read-Only Format; Part 3 &#8212; Audio Visual Basic Specifications" in section 9.14 "HDMV graphics streams".  </p>
+<h1 id="rfc.section.7.6.1">
+<a href="#rfc.section.7.6.1">7.6.1.</a> <a href="#storage-of-hdmv-presentation-graphics-subtitles" id="storage-of-hdmv-presentation-graphics-subtitles">Storage of HDMV presentation graphics subtitles</a>
+</h1>
+<h1 id="rfc.section.7.6.1.1">
+<a href="#rfc.section.7.6.1.1">7.6.1.1.</a> <a href="#codecid--codecprivate-codec-identification" id="codecid--codecprivate-codec-identification">CodecID &amp; CodecPrivate: codec identification</a>
+</h1>
+<p id="rfc.section.7.6.1.1.p.1">The CodecID to use is <samp>S_HDMV/PGS</samp>. A CodecPrivate element is not used.  </p>
+<h1 id="rfc.section.7.6.1.2">
+<a href="#rfc.section.7.6.1.2">7.6.1.2.</a> <a href="#storage-of-hdmv-pgs-segments-in-matroska-blocks" id="storage-of-hdmv-pgs-segments-in-matroska-blocks">Storage of HDMV PGS Segments in Matroska Blocks</a>
+</h1>
+<p id="rfc.section.7.6.1.2.p.1">Each HDMV PGS Segment (short: Segment) will be stored in a Matroska Block. A Segment is the data structure described in section 9.14.2.1 "Segment coding structure and parameters" of the Blu-ray specifications.  </p>
+<p id="rfc.section.7.6.1.2.p.2">Each Segment contains a presentation timestamp. This timestamp will be used as the timestamp for the Matroska Block.  </p>
+<p id="rfc.section.7.6.1.2.p.3">A Segment is normally shown until a subsequent Segment is encountered. Therefore the Matroska Block MAY have no Duration. In that case a player MUST display a Segment within a Matroska Block until the next Segment is encountered.  </p>
+<p id="rfc.section.7.6.1.2.p.4">A muxer MAY use a Duration, e.g. by calculating the distance between two subsequent Segments. If a Matroska Block has a Duration, a player MUST display that Segment only for the duration of the Block's Duration.  </p>
+<h1 id="rfc.section.7.7">
+<a href="#rfc.section.7.7">7.7.</a> <a href="#hdmv-text-subtitles" id="hdmv-text-subtitles">HDMV text subtitles</a>
+</h1>
+<p id="rfc.section.7.7.p.1">The specifications for the HDMV text subtitle format (short: HDMV TextST) can be found in the document "Blu-ray Disc Read-Only Format; Part 3 &#8212; Audio Visual Basic Specifications" in section 9.15 "HDMV text subtitle streams".  </p>
+<h1 id="rfc.section.7.7.1">
+<a href="#rfc.section.7.7.1">7.7.1.</a> <a href="#storage-of-hdmv-text-subtitles" id="storage-of-hdmv-text-subtitles">Storage of HDMV text subtitles</a>
+</h1>
+<h1 id="rfc.section.7.7.1.1">
+<a href="#rfc.section.7.7.1.1">7.7.1.1.</a> <a href="#codecid--codecprivate-codec-identification-1" id="codecid--codecprivate-codec-identification-1">CodecID &amp; CodecPrivate: codec identification</a>
+</h1>
+<p id="rfc.section.7.7.1.1.p.1">The CodecID to use is <samp>S_HDMV/TEXTST</samp>.  </p>
+<p id="rfc.section.7.7.1.1.p.2">A CodecPrivate Element is required. It MUST contain the stream's Dialog Style Segment as described in section 9.15.4.2 "Dialog Style Segment" of the Blu-ray specifications.  </p>
+<h1 id="rfc.section.7.7.1.2">
+<a href="#rfc.section.7.7.1.2">7.7.1.2.</a> <a href="#storage-of-hdmv-textst-dialog-presentation-segments-in-matroska-blocks" id="storage-of-hdmv-textst-dialog-presentation-segments-in-matroska-blocks">Storage of HDMV TextST Dialog Presentation Segments in Matroska Blocks</a>
+</h1>
+<p id="rfc.section.7.7.1.2.p.1">Each HDMV Dialog Presentation Segment (short: Segment) will be stored in a Matroska Block. A Segment is the data structure described in section 9.15.4.3 "Dialog presentation segment" of the Blu-ray specifications.  </p>
+<p id="rfc.section.7.7.1.2.p.2">Each Segment contains a start and an end presentation timestamp (short: start PTS &amp; end PTS). The start PTS will be used as the timestamp for the Matroska Block. The Matroska Block MUST have a Duration, and that Duration is the difference between the end PTS and the start PTS.  </p>
+<p id="rfc.section.7.7.1.2.p.3">A player MUST use the Matroska Block's timestamp and Duration instead of the Segment's start and end PTS for determining when and how long to show the Segment.  </p>
+<h1 id="rfc.section.7.7.1.3">
+<a href="#rfc.section.7.7.1.3">7.7.1.3.</a> <a href="#character-set" id="character-set">Character set</a>
+</h1>
+<p id="rfc.section.7.7.1.3.p.1">When TextST subtitles are stored inside Matroska, the only allowed character set is UTF-8.  </p>
+<p id="rfc.section.7.7.1.3.p.2">Each HDMV text subtitle stream in a Blu-ray can use one of a handful of character sets. This information is not stored in the MPEG2 Transport Stream itself but in the accompanying Clip Information file.  </p>
+<p id="rfc.section.7.7.1.3.p.3">Therefore a muxer MUST parse the accompanying Clip Information file. If the information indicates a character set other than UTF-8, it MUST re-encode all text Dialog Presentation Segments from the indicated character set to UTF-8 prior to storing them in Matroska.  </p>
+<h1 id="rfc.section.7.8">
+<a href="#rfc.section.7.8">7.8.</a> <a href="#digital-video-broadcasting-dvb-subtitles" id="digital-video-broadcasting-dvb-subtitles">Digital Video Broadcasting (DVB) subtitles</a>
+</h1>
+<p id="rfc.section.7.8.p.1">The specifications for the Digital Video Broadcasting subtitle bitstream format (short: DVB subtitles) can be found in the document "ETSI EN 300 743 - Digital Video Broadcasting (DVB); Subtitling systems". The storage of DVB subtitles in MPEG transport streams is specified in the document "ETSI EN 300 468 - Digital Video Broadcasting (DVB); Specification for Service Information (SI) in DVB systems".  </p>
+<h1 id="rfc.section.7.8.1">
+<a href="#rfc.section.7.8.1">7.8.1.</a> <a href="#storage-of-dvb-subtitles" id="storage-of-dvb-subtitles">Storage of DVB subtitles</a>
+</h1>
+<h1 id="rfc.section.7.8.1.1">
+<a href="#rfc.section.7.8.1.1">7.8.1.1.</a> <a href="#codecid" id="codecid">CodecID</a>
+</h1>
+<p id="rfc.section.7.8.1.1.p.1">The CodecID to use is <samp>S_DVBSUB</samp>.  </p>
+<h1 id="rfc.section.7.8.1.2">
+<a href="#rfc.section.7.8.1.2">7.8.1.2.</a> <a href="#codecprivate-1" id="codecprivate-1">CodecPrivate</a>
+</h1>
+<p id="rfc.section.7.8.1.2.p.1">The CodecPrivate element is five bytes long and has the following structure: </p>
+<p></p>
+
+<ul>
+<li>2 bytes: composition page ID (bit string, left bit first)</li>
+<li>2 bytes: ancillary page ID (bit string, left bit first)</li>
+<li>1 byte: subtitling type (bit string, left bit first)</li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.7.8.1.2.p.3">The semantics of these bytes are the same as the ones described in section 6.2.41 "Subtitling descriptor" of ETSI EN 300 468.  </p>
+<h1 id="rfc.section.7.8.1.3">
+<a href="#rfc.section.7.8.1.3">7.8.1.3.</a> <a href="#storage-of-dvb-subtitles-in-matroska-blocks" id="storage-of-dvb-subtitles-in-matroska-blocks">Storage of DVB subtitles in Matroska Blocks</a>
+</h1>
+<p id="rfc.section.7.8.1.3.p.1">Each Matroska Block consists of one or more DVB Subtitle Segments as described in segment 7.2 "Syntax and semantics of the subtitling segment" of ETSI EN 300 743.  </p>
+<p id="rfc.section.7.8.1.3.p.2">Each Matroska Block SHOULD have a Duration indicating how long the DVB Subtitle Segments in that Block SHOULD be displayed.  </p>
+<h1 id="rfc.references">
+<a href="#rfc.references">8.</a> Normative References</h1>
+<table><tbody>
+<tr>
+<td class="reference"><b id="RFC3339">[RFC3339]</b></td>
+<td class="top">
+<a>Klyne, G.</a> and <a>C. Newman</a>, "<a href="https://tools.ietf.org/html/rfc3339">Date and Time on the Internet: Timestamps</a>", RFC 3339, DOI 10.17487/RFC3339, July 2002.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC6386">[RFC6386]</b></td>
+<td class="top">
+<a>Bankoski, J.</a>, <a>Koleszar, J.</a>, <a>Quillio, L.</a>, <a>Salonen, J.</a>, <a>Wilkins, P.</a> and <a>Y. Xu</a>, "<a href="https://tools.ietf.org/html/rfc6386">VP8 Data Format and Decoding Guide</a>", RFC 6386, DOI 10.17487/RFC6386, November 2011.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC6648">[RFC6648]</b></td>
+<td class="top">
+<a>Saint-Andre, P.</a>, <a>Crocker, D.</a> and <a>M. Nottingham</a>, "<a href="https://tools.ietf.org/html/rfc6648">Deprecating the "X-" Prefix and Similar Constructs in Application Protocols</a>", BCP 178, RFC 6648, DOI 10.17487/RFC6648, June 2012.</td>
+</tr>
+</tbody></table>
+<h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
+<div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Steve Lhomme</span> 
+	  <span class="n hidden">
+		<span class="family-name">Lhomme</span>
+	  </span>
+	</span>
+	<span class="org vcardline"></span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:slhomme@matroska.org">slhomme@matroska.org</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Moritz Bunkus</span> 
+	  <span class="n hidden">
+		<span class="family-name">Bunkus</span>
+	  </span>
+	</span>
+	<span class="org vcardline"></span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:moritz@bunkus.org">moritz@bunkus.org</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Dave Rice</span> 
+	  <span class="n hidden">
+		<span class="family-name">Rice</span>
+	  </span>
+	</span>
+	<span class="org vcardline"></span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:dave@dericed.com">dave@dericed.com</a></span>
+
+  </address>
+</div>
+
+</body>
+</html>

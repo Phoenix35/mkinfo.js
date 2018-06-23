@@ -1,7 +1,53 @@
-# Don't publish the configs
-/*
+#
+# Based on https://github.com/github/gitignore
+#
 
-# Publish development
-!.gitignore
-!README.md
-!/src/*
+.gitignore
+
+# JetBrains IDE
+#
+
+.idea/
+
+# File-based project format
+*.iws
+
+
+# Utility and TODO
+#
+/*.bat
+/*.txt
+
+
+# NODE
+#
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# dotenv environment variables file
+.env
+
+
+# WINDOWS
+#
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Folder config file
+[Dd]esktop.ini
+
+# Windows shortcuts
+*.lnk

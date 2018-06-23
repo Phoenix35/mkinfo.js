@@ -1,0 +1,43 @@
+#
+# Based on https://github.com/alexkaratarakis/gitattributes/blob/master/Web.gitattributes
+#
+
+## SOURCE CODE
+*.css       text
+*.html      text
+*.js        text
+*.xml       text
+*.json      text
+*.ndjson    text
+
+## LINTERS
+.eslintrc       text
+.htmlhintrc     text
+.stylelintrc    text
+
+## CONFIGS
+*.config        text
+.browserslistrc text
+.editorconfig   text
+*.yml           text
+
+## GRAPHICS
+*.ico   binary
+*.png   binary
+
+## AUDIO
+*.mka   binary
+
+## VIDEO
+*.mkv binary
+
+## ARCHIVES
+*.zip binary
+
+## FONTS
+*.ttf   binary
+*.otf   binary
+*.woff2 binary
+
+## EXECUTABLES
+*.exe   binary
